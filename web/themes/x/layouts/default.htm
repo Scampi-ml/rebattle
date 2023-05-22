@@ -1,0 +1,241 @@
+description = "Default layout"
+
+[session]
+security = "all"
+[mainCom]
+==
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>{{ this.page.title }} | {{ appName }}</title>    
+
+    <!-- Bootstrap core CSS -->
+  <link href="/themes/x/assets/lib/bs/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/themes/x/assets/img/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/themes/x/assets/img/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/themes/x/assets/img/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/themes/x/assets/img/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/themes/x/assets/img/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/themes/x/assets/img/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/themes/x/assets/img/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/themes/x/assets/img/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/themes/x/assets/img/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/themes/x/assets/img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/themes/x/assets/img/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/themes/x/assets/img/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/themes/x/assets/img/favicon/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/themes/x/assets/img/favicon/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/themes/x/assets/img/favicon/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/themes/x/assets/img/favicon/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/themes/x/assets/img/favicon/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/themes/x/assets/img/favicon/mstile-310x310.png" />
+    
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <link href="/themes/x/assets/lib/fa/css/all.css" rel="stylesheet">
+    <link href="/themes/x/assets/css/anim.css" rel="stylesheet">
+    <link href="/themes/x/assets/css/a-x.css?ts={{ 'now'|date('YmdHis') }}" rel="stylesheet">
+    {% styles %}
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7X067CTKLW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7X067CTKLW');
+</script>
+
+  </head>
+  <body>
+    
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand hx game-brand" href="/">{{ appName }}</a> -->
+    <a class="navbar-brand" href="/">
+      <img src="/themes/x/assets/img/logo.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="fas fa-stream animate__infinite animate__animated animate__pulse"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      
+      <ul class="navbar-nav ms-auto mb-2 mb-md-0 hx text-center">
+        {% if user %}
+        <li class="nav-item">
+          <a class="nav-link{{ this.page.id == 'home' ? ' active' : '' }}" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ (this.page.id == 'fight' or this.page.id == 'arena') ? ' active' : '' }}" aria-current="page" href="/arena">Fight Arena</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ this.page.id == 'inventory' ? ' active' : '' }}" aria-current="page" href="/inventory">Inventory</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ this.page.id == 'craft' ? ' active' : '' }}" aria-current="page" href="/craft">Craft</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ this.page.id == 'market' ? ' active' : '' }}" aria-current="page" href="/market">Market</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ this.page.id == 'bank' ? ' active' : '' }}" aria-current="page" href="/bank">Bank</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ this.page.id == 'scoreboard' ? ' active' : '' }}" aria-current="page" href="/scoreboard">Scoreboard</a>
+        </li>
+        {% if gameDemo %}
+        <li class="nav-item">
+          <a class="nav-link {{ this.page.id == 'buy' ? ' active' : '' }}" aria-current="page" href="/buy">BUY GAME</a>
+        </li>
+        {% endif %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div style="position: absolute; top: 30px; font-size: 11px;">
+              <i class="fas fa-gem"></i> {{ user.gems }}
+              <i class="fas fa-coins"></i> {{ user.coins }}
+            </div>
+            {{ user.name }}
+            {% if user.add_points %}<span class="badge bg-danger">{{ user.add_points }}</span>{% endif %}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/user">Account {% if user.add_points %}<span class="badge bg-danger">{{ user.add_points }}</span>{% endif %}</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" data-request="onLogout" data-request-data="redirect: '/'">Logout</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link {{ this.page.id == 'home' ? ' active' : '' }}" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ this.page.id == 'reset-password' ? ' active' : '' }}" aria-current="page" href="/reset-password">Reset passowrd</a>
+        </li>
+        {% if gameDemo %}
+        <li class="nav-item">
+          <a class="nav-link {{ this.page.id == 'buy' ? ' active' : '' }}" aria-current="page" href="/buy">BUY GAME</a>
+        </li>
+        {% endif %}
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div class="container" id="app">
+  {% flash %}
+    <p
+        data-control="flash-message"
+        class="flash-message fade {{ type }}"
+        data-interval="5">
+        {{ message }}
+    </p>
+  {% endflash %}
+  {% page %}
+  {% partial 'item_modal' %}
+</div>
+
+<footer class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+        <h6 class="mb-1 hx">About us</h6>
+        <a href="/terms" class="btn btn-sm mb-1 btn-light">
+          Terms
+        </a>
+        <a href="/privacy" class="btn btn-sm mb-1 btn-light">
+          Privacy
+        </a>
+        <a href="/contact" class="btn btn-sm mb-1 btn-light">
+          Contact
+        </a>
+    </div>
+    <div class="col-sm-4 text-center">
+      <h6 class="mb-1">{{ appName }}</h6>
+      <span>The online battle game</span>
+    </div>
+    <div class="col-sm-4 text-end">
+      <h6 class="mb-1 hx">Follow us</h6>
+      <a href="#" class="btn btn-sm mb-1 btn-light">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#" class="btn btn-sm mb-1 btn-light">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#" class="btn btn-sm mb-1 btn-light">
+        <i class="fab fa-twitch"></i>
+      </a>
+      <a href="#" class="btn btn-sm mb-1 btn-light">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#" class="btn btn-sm mb-1 btn-light">
+        <i class="fab fa-reddit"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="/themes/x/assets/js/jquery.js"></script>
+    <script src="/themes/x/assets/js/bootstrap.bundle.min.js" ></script>
+    {% framework extras %}
+    <script src="/themes/x/assets/x/js/main.js" ></script>
+    <script>
+      {% if user %}
+      var user = {
+        "img_url": "{{ user.img_url }}",
+        "hp": {{ user.hp ? user.hp : 0 }},
+        "hp_max": {{ user.hp_max ? user.hp_max : 0 }},
+        "hp_ts": {{ user.hp_ts ? user.hp_ts : "null" }},
+        "ap": {{ user.ap ? user.ap : 0 }},
+        "ap_max": {{ user.ap_max ? user.ap_max : 0 }},
+        "ap_ts": {{ user.ap_ts ? user.ap_ts : "null" }},
+        "xp": {{ user.xp ? user.xp : 0 }},
+        "xp_max": {{ user.xp_max ? user.xp_max : 0 }},
+        "level": {{ user.level ? user.level : 0 }},
+        "coins": {{ user.coins ? user.coins : 0 }},
+        "gems": {{ user.gems ? user.gems : 0 }},
+        "wins": {{ user.wins ? user.wins : 0 }},
+        "lose": {{ user.lose ? user.lose : 0 }},
+        "standoff": {{ user.standoff ? user.standoff : 0 }},
+        "fight_id": {{ user.fight_id ? user.fight_id : "null" }}
+      };
+      {% else %}
+      var user = null;
+      {% endif %}
+  </script>
+  {% scripts %}
+      
+  </body>
+</html>

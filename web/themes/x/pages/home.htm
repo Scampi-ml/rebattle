@@ -1,0 +1,277 @@
+title = "ReBattle"
+url = "/"
+layout = "default"
+is_hidden = 0
+
+[playerDashboardCom]
+
+[account]
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+== 
+{% if not user %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4 mt-5 mb-5 text-center">
+        <div class="">
+            <img class="mt-2" src="/themes/x/assets/img/logo.png" height="50px" alt="">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 offset-md-3 text-center">
+        <div class="p-3">
+            <h3>Login</h3>
+            {% partial 'user/signin' %}
+        </div>
+    </div>
+    <div class="col-md-3 text-center">
+        <div class="p-3">
+            <h3>Register</h3>
+            {% partial 'user/register' %}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 offset-md-4 mt-5 text-center">
+        <div class=" small text-center text-secondary">
+            By using our services you agree to the<br>
+            <a href="/terms" class="text-dark" >Terms and Conditions</a> and
+            <a href="/privacy" class="text-dark">Privacy policy</a>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<h3 class="pt-3 animate__animated animate__fadeInDown">
+    <i class="far fa-user-circle"></i>
+    Account
+    <span class="text-secondary small">your profile</span>
+</h3>
+<hr>
+
+<div class="row">
+    <div class="col-lg-3 bg-light border rounded pt-2">
+        {% partial 'user_side' %}
+    </div>
+    <div class="col-lg-9">
+        {% if is_shop_enabled %}
+        <h5 class="animate__animated animate__fadeInDown">
+            <i class="fas fa-rocket animate__animated animate__pulse animate__infinite"></i>
+            Boost your gameplay!
+        </h5>
+        <div class="row">
+            {% if is_coins_enabled %}
+            <div class="col-md-6 mb-3">
+                {{ form_ajax('onMakeOrder') }}
+                <div class="input-group mb-2">
+                    <input type="hidden" name="product" value="coins"> 
+                    <input name="quantity" type="number" class="form-control hx text-end" v-model="coinsQuantity" min="1" max="99">
+                    <span class="input-group-text text-center hx text-warning">
+                        <i class="fas fa-times text-secondary" style="margin-right: 10px;"></i>
+                        <span class="p-1 hx">
+                            <i class="fas fa-coins"></i>
+                            <span v-text="coinsSize"></span>
+                        </span>
+                        <span class="text-secondary small">($<span v-text="coinsPrice"></span>)</span>
+                    </span>
+                </div>
+                <div class="text-center">
+                    <div v-if="coinsQuantity > 1" class="p-1 text-secondary">
+                        <i class="fas fa-shopping-cart"></i>
+                        In total:
+                        <span class="p-1 hx text-warning">
+                            <i class="fas fa-coins"></i>
+                            <span v-text="coinsSize*coinsQuantity"></span>
+                        </span>
+                        <span class="text-secondary small">($<span v-text="coinsPrice * coinsQuantity"></span>)</span>
+                    </div>
+                    <button class="btn btn-outline-warning">Buy coins</button>
+                </div>
+                {{ form_close() }}
+            </div>
+            {% endif %}
+            {% if is_gems_enabled %}
+            <div class="col-md-6 mb-3">
+                {{ form_ajax('onMakeOrder') }}
+                <div class="input-group mb-2">
+                    <input type="hidden" name="product" value="gems"> 
+                    <input name="quantity" type="number" class="form-control hx text-end" v-model="gemsQuantity" min="1" max="99">
+                    <span class="input-group-text text-center hx text-danger">
+                        <i class="fas fa-times text-secondary" style="margin-right: 10px;"></i>
+                        <span class="p-1 hx">
+                            <i class="fas fa-gem"></i>
+                            <span v-text="gemsSize"></span>
+                        </span>
+                        <span class="text-secondary small">($<span v-text="gemsPrice"></span>)</span>
+                    </span>
+                </div>
+                <div class="text-center">
+                    <div v-if="gemsQuantity > 1" class="p-1 text-secondary">
+                        <i class="fas fa-shopping-cart"></i>
+                        In total:
+                        <span class="p-1 hx text-danger">
+                            <i class="fas fa-gem"></i>
+                            <span v-text="gemsSize*gemsQuantity"></span>
+                        </span>
+                        <span class="text-secondary small">($<span v-text="gemsPrice * gemsQuantity"></span>)</span>
+                    </div>
+                    <button class="btn btn-outline-danger">Buy Gems</button>
+                </div>
+                {{ form_close() }}
+            </div>
+            {% endif %}
+        </div>
+        {% if user.stripe_id and user.stripe_id != "" %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bg-light rounded p-2 text-center" role="alert">
+                    <div class="small">
+                        <i class="fas fa-info-circle"></i>
+                        To view your invoices and other financial information go to Stripe customer panel.
+                    </div>
+                    <a href="#" class="btn btn-sm btn-outline-secondary" data-request="onCustomerPortal">
+                        <i class="fas fa-arrow-right"></i>
+                        Customer panel
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <hr>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-4">
+                {% if user.add_points %}
+                <div class="p-3">
+                    <h5 class="animate__animated animate__fadeInDown">
+                        <i class="fas fa-plys text-danger"></i>
+                        Add points <span class="span text-secondary">({{ user.add_points }})</small>
+                    </h5>
+                    {{ form_ajax('onProfileAddPoint') }}
+                    <div>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text text-center text-secondary" style="width: 40px">
+                                <i class="fas fa-heart"></i>
+                            </span>
+                            <input name="add_hp" type="number" class="form-control" value="0">
+                        </div>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text text-center text-secondary" style="width: 40px">
+                                <i class="fas fa-theater-masks"></i>
+                            </span>
+                            <input name="add_ap" type="number" class="form-control" value="0">
+                        </div>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text text-center text-secondary" style="width: 40px">
+                                <i class="fas fa-bolt" style="margin-left: 3px"></i>
+                            </span>
+                            <input name="add_power" type="number" class="form-control" value="0">
+                        </div>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text text-center text-secondary" style="width: 40px">
+                                <i class="fas fa-shield-alt"></i>
+                            </span>
+                            <input name="add_defense" type="number" class="form-control" value="0">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-2 w-100">Add Points</button>
+                    {{ form_close() }}
+                </div>
+                {% endif %}
+                <div class="p-3">
+                    <h5 class="animate__animated animate__fadeInDown">
+                        <i class="fas fa-heart text-danger"></i>
+                        HP
+                    </h5>
+                    <div class="progress-text">HP {{ user.hp }}/{{ user.hp_max }}</div>
+                    <div class="progress bg-secondary mb-1" title="Health points">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ ((user.hp/user.hp_max)*100) }}%" aria-valuenow="{{ ((user.hp/user.hp_max)*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="text-center">
+                        {% if user.hp < user.hp_max %}
+                        <a class="btn btn-outline-danger mt-2 mb-2" data-request="onAction" data-request-data="action: 'renew', renew: 'hp'">
+                            Renew now!
+                            <br><span class="font-regular"><i class="fa fa-gem"></i> {{ renew_hp_gems }}</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="p-3">
+                    <h5 class="animate__animated animate__fadeInDown">
+                        <i class="fas fa-theater-masks text-primary"></i>
+                        AP
+                    </h5>
+                    <div class="progress-text">AP {{ user.ap }}/{{ user.ap_max }}</div>
+                    <div class="progress bg-secondary mb-1" title="Action points">
+                        <div class="progress-bar hx" role="progressbar" style="width: {{ ((user.ap/user.ap_max)*100) }}%" aria-valuenow="{{ ((user.ap/user.ap_max)*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="text-center">
+                        {% if user.ap < user.ap_max %}
+                        <a class="btn btn-outline-primary mt-2 mb-2" data-request="onAction" data-request-data="action: 'renew', renew: 'ap'">
+                            Renew now!
+                            <br><span class="font-regular"><i class="fa fa-gem"></i> {{ renew_ap_gems }}</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <h5 class="animate__animated animate__fadeInDown">
+                    <i class="far fa-grin text-secondary"></i>
+                    Your avatar
+                </h5>
+                <div class="text-center">
+                    <img src="{{ user.img_url }}" class="player-avatar" alt=""><br>
+                    <a href="/avatar" class="btn btn-secondary mt-2 mb-2">
+                        <i class="far fa-grin"></i>
+                        Change avatar
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <h5 class="animate__animated animate__fadeInDown">
+                    <i class="far fa-user-circle text-secondary"></i>
+                    Player profile
+                </h5>   
+
+                    {{ form_ajax('onProfileUpdate') }}
+                        <div class="form-group">
+                            <label for="playerName">Your player name</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text text-secondary">
+                                    <i class="fas fa-at"></i>
+                                </span>
+                                <input name="player_name" type="text" class="form-control" id="playerName" value="{{ user.player_name }}">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary mt-2">Update player</button>
+                        </div>
+                    {{ form_close() }}
+
+                <h5 class="animate__animated animate__fadeInDown mt-4">
+                    <i class="fas fa-user-circle text-secondary"></i>
+                    User account
+                </h5>            
+                
+                {% partial 'user/activation_check' %}
+            
+                {% partial 'user/update' %}
+            
+                {% partial 'user/deactivate_link' %}
+            
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<script>
+    var coins_bundle_price = {{ coins_bundle_price }},
+        coins_bundle_size = {{ coins_bundle_size }},
+        gems_bundle_price = {{ gems_bundle_price }},
+        gems_bundle_size = {{ gems_bundle_size }};
+</script>

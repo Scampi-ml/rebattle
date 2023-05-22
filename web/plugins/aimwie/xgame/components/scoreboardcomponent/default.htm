@@ -1,0 +1,107 @@
+<h3 class="pt-3 animate__animated animate__fadeInDown">
+    <i class="fas fa-trophy"></i>
+    Scorebaord
+    <span class="h5 text-secondary">
+        by <i class="{{ top.icon }} text-warning"></i> {{ top.title }}
+    </span>
+</h3>
+<hr>
+<div>
+    <table class="table table-hover text-center hx">
+        <thead>
+            <tr>
+                <td width="70px" class="text-secondary text-decoration-none">Rank</td>
+                <td width="150px" class="text-secondary text-decoration-none">
+                    Username
+                </td>
+                <td>
+                    <a href="/scoreboard?top=level" class="text-secondary text-decoration-none">
+                        <i class="fas fa-star {{ topId != 'level' ? 'text-secondary' : 'text-warning active animate__animated animate__pulse animate__infinite' }}"></i>
+                        Level
+                    </a>
+                </td>
+                <td>
+                    <a href="/scoreboard?top=win" class="text-secondary text-decoration-none">
+                        <i class="fas fa-medal {{ topId != 'win' ? 'text-secondary' : 'text-warning active animate__animated animate__pulse animate__infinite' }}"></i>
+                        Win
+                    </a>
+                </td>
+                <td>
+                    <a href="/scoreboard?top=lose" class="text-secondary text-decoration-none">
+                        <i class="far fa-dizzy {{ topId != 'lose' ? 'text-secondary' : 'text-warning active animate__animated animate__pulse animate__infinite' }}"></i>
+                        Lose
+                    </a>
+                </td>
+                <td>
+                    <a href="/scoreboard?top=standoff" class="text-secondary text-decoration-none">
+                        <i class="fas fa-balance-scale {{ topId != 'standoff' ? 'text-secondary' : 'text-warning active animate__animated animate__pulse animate__infinite' }}"></i>
+                        Standoff
+                    </a>
+                </td>
+                <td>
+                    <a href="/scoreboard?top=power" class="text-secondary text-decoration-none">
+                        <i class="fas fa-bolt {{ topId != 'power' ? 'text-secondary' : 'text-warning active animate__animated animate__pulse animate__infinite' }}"></i>
+                        Power
+                    </a>
+                </td>
+                <td>
+                    <a href="/scoreboard?top=defense" class="text-secondary text-decoration-none">
+                        <i class="fas fa-shield-alt {{ topId != 'defense' ? 'text-secondary' : 'text-warning active animate__animated animate__pulse animate__infinite' }}"></i>
+                        Defense
+                    </a>
+                </td>
+                <td>
+                    <a href="/scoreboard?top=hp" class="text-secondary text-decoration-none">
+                        <i class="fas fa-heart {{ topId != 'hp' ? 'text-secondary' : 'text-warning active animate__animated animate__pulse animate__infinite' }}"></i>
+                        HP
+                    </a>
+                </td>
+                <td>
+                    <a href="/scoreboard?top=ap" class="text-secondary text-decoration-none">
+                        <i class="fas fa-theater-masks {{ topId != 'ap' ? 'text-secondary' : 'text-warning active animate__animated animate__pulse animate__infinite' }}"></i>
+                        AP
+                    </a>
+                </td>
+                <td>
+                    <a href="/scoreboard?top=coins" class="text-secondary text-decoration-none">
+                        <i class="fas fa-coins {{ topId != 'coins' ? 'text-secondary' : 'text-warning active animate__animated animate__pulse animate__infinite' }}"></i>
+                        Coins
+                    </a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for xUser in xUsers %}
+            <tr class="record d-none {{ loop.index0 is odd ? 'record-left' : 'record-right' }}">
+                <td>#{{ loop.index }}</td>
+                <td><a href="/player/{{ xUser.player_name }}" class="text-decoration-none text-dark">{{ xUser.player_name }}</a></td>
+                <td>{{ xUser.level }}</td>
+                <td>{{ xUser.win }}</td>
+                <td>{{ xUser.lose }}</td>
+                <td>{{ xUser.standoff }}</td>
+                <td>{{ xUser.power }}</td>
+                <td>{{ xUser.defense }}</td>
+                <td>{{ xUser.hp_max }}</td>
+                <td>{{ xUser.ap_max }}</td>
+                <td>{{ xUser.coins }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% put scripts %}
+<script>
+    var rowDelay = 120;
+    $("table tr.record").each(function(index) {
+        var self = this;
+        console.log("index", index, $(this));
+        setTimeout(function() {
+            if ($(self).hasClass("record-right")) {
+                $(self).removeClass("d-none").addClass("animate__animated animate__fadeInRight");
+            } else {
+                $(self).removeClass("d-none").addClass("animate__animated animate__fadeInLeft");
+            }
+        }, rowDelay + (rowDelay * index));
+    });
+</script>
+{% endput %}

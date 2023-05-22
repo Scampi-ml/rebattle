@@ -1,0 +1,27 @@
+fields:
+    item:
+        label: Item
+        nameFrom: title
+        descriptionFrom: id
+        list: $/aimwie/xgame/models/item/columns.yaml
+        span: full
+        required: 1
+        context:
+            - create
+        type: recordfinder
+        comment: 'Opponent item'
+    text:
+        label: Information
+        span: full
+        context:
+            - update
+            - preview
+        type: section
+        comment: 'Item can be only added, or deleted'
+    opponent_item_delete:
+        span: full
+        path: $/aimwie/xgame/controllers/opponents/_delete_opponent_item.htm
+        context:
+            - update
+            - preview
+        type: partial

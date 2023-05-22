@@ -1,0 +1,119 @@
+<h4>
+    {% if section == 'pvp' %}
+    <a href="/player/{{ opponent.player_name }}" class="text-decoration-none text-dark">
+        <i class="fas fa-hat-cowboy"></i>
+        {{ opponent.player_name }}
+    </a>
+    {% else %}
+    <i class="fas fa-crown"></i>
+    {{ opponent.player_name }}
+    {% endif %}
+</h4>
+<div class="player-container">
+    <div class="player-avater-container">
+        <img src="{{ opponent.img_url }}" class="player-avatar" alt="">
+    </div>
+    <div class="player-helmet-container">
+        {% if opponent.items_cache.helmet %}
+        <a href="#modal-item" class="item tt" title="{{ opponent.items_cache.helmet.item.title }}" @click="showItem({id: '{{ opponent.items_cache.helmet.item_id }}', uid: '{{ opponent.items_cache.helmet.id }}'})">
+            <img src="{{ opponent.items_cache.helmet.item.img_url }}" title="{{ opponent.items_cache.helmet.item.title  }}" />
+        </a>
+        {% else %}
+        <span class="item wear helmet">
+            <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+        </span>
+        {% endif %}
+    </div>
+    <div class="player-armor-container">
+        {% if opponent.items_cache.armor %}
+        <a href="#modal-item" class="item tt" title="{{ opponent.items_cache.armor.item.title }}" @click="showItem({id: '{{ opponent.items_cache.armor.item_id }}', uid: '{{ opponent.items_cache.armor.id }}'})">
+            <img src="{{ opponent.items_cache.armor.item.img_url }}" title="{{ opponent.items_cache.armor.item.title  }}" />
+        </a>
+        {% else %}
+        <span class="item wear armor">
+            <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+        </span>
+        {% endif %}            
+    </div>
+    <div class="player-pants-container">
+        {% if opponent.items_cache.pants %}
+        <a href="#modal-item" class="item tt" title="{{ opponent.items_cache.pants.item.title }}" @click="showItem({id: '{{ opponent.items_cache.pants.item_id }}', uid: '{{ opponent.items_cache.pants.id }}'})">
+            <img src="{{ opponent.items_cache.pants.item.img_url }}" title="{{ opponent.items_cache.pants.item.title  }}" />
+        </a>
+        {% else %}
+        <span class="item wear pants">
+            <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+        </span>
+        {% endif %}
+    </div>
+    <div class="player-bottom-container">
+        <div class="player-weapon-container">
+            {% if opponent.items_cache.weapon %}
+            <a href="#modal-item" class="item tt" title="{{ opponent.items_cache.weapon.item.title }}" @click="showItem({id: '{{ opponent.items_cache.weapon.item_id }}', uid: '{{ opponent.items_cache.weapon.id }}'})">
+                <img src="{{ opponent.items_cache.weapon.item.img_url }}" title="{{ opponent.items_cache.weapon.item.title  }}" />
+            </a>
+            {% else %}
+            <span class="item wear weapon">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endif %}     
+        </div>
+        <div class="player-shield-container">
+            {% if opponent.items_cache.shield %}
+            <a href="#modal-item" class="item tt" title="{{ opponent.items_cache.shield.item.title }}" @click="showItem({id: '{{ opponent.items_cache.shield.item_id }}', uid: '{{ opponent.items_cache.shield.id }}'})">
+                <img src="{{ opponent.items_cache.shield.item.img_url }}" title="{{ opponent.items_cache.shield.item.title  }}" />
+            </a>
+            {% else %}
+            <span class="item wear shield">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endif %}          
+        </div>
+        <div class="player-boots-container">
+            {% if opponent.items_cache.boots %}
+            <a href="#modal-item" class="item tt" title="{{ opponent.items_cache.boots.item.title }}" @click="showItem({id: '{{ opponent.items_cache.boots.item_id }}', uid: '{{ opponent.items_cache.boots.id }}'})">
+                <img src="{{ opponent.items_cache.boots.item.img_url }}" title="{{ opponent.items_cache.boots.item.title  }}" />
+            </a>
+            {% else %}
+            <span class="item wear boots">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="player-stats clear-both">
+        {% for actionId, action in opponent.actions_cache %}
+        <span class="badge-action tt" title="[{{ action.ap }}AP] {{ action.title }} - {{ action.description }}">
+            <i class="{{ action.icon }}"></i>
+        </span>
+        {% endfor %}
+        <div class="progress-text">HP {{ opponent.hp }}/{{ opponent.hp_max }}</div>
+        <div class="progress bg-secondary mb-1" title="Health points">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ opponent.hp_max ? ((opponent.hp/opponent.hp_max)*100) : 0 }}%" ></div>
+        </div>
+        <div class="progress-text">AP {{ opponent.ap }}/{{ opponent.ap_max }}</div>
+        <div class="progress bg-secondary mb-1" title="Action points">
+            <div class="progress-bar hx" role="progressbar" style="width: {{ opponent.ap_max ? ((opponent.ap/opponent.ap_max)*100) : 0 }}%"></div>
+        </div>
+        {% if opponent.xp_max %}
+        <div class="progress-text">XP {{ opponent.xp }}/{{ opponent.xp_max }}</div>
+        <div class="progress bg-secondary mb-1" title="Experience points">
+            <div class="progress-bar bg-success hx" role="progressbar" style="width: {{ opponent.xp_max ? ((opponent.xp/opponent.xp_max)*100) : 0 }}%"></div>
+        </div>
+        {% endif %}
+        <div class="progress-text">CRITICAL {{ opponent.critical }}/100%</div>
+        <div class="progress bg-secondary mb-2" title="Critical hit percentage possibility">
+            <div class="progress-bar bg-info" role="progressbar" style="width: {{ ((opponent.critical/100)*100) }}%"></div>
+        </div>
+
+        <div class=" text-secondary p-1 hx rounded-pill text-center mb-1">
+            <i class="fas fa-star "></i> LEVEL {{ opponent.level }}
+        </div>
+        <div class=" text-secondary p-1 hx rounded-pill text-center mb-1">
+            <i class="fas fa-bolt "></i> POWER {{ opponent.power }}
+        </div>
+        <div class=" text-secondary p-1 hx rounded-pill text-center mb-1">
+            <i class="fas fa-shield-alt "></i> DEFENSE {{ opponent.defense }} 
+        </div>
+    </div>
+</div>

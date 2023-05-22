@@ -1,0 +1,52 @@
+title = "Checkout status"
+url = "/checkout-status/:status"
+layout = "default"
+==
+function onStart() {
+    $this['status'] = $this->param('status');
+}
+==
+{% if status == "success" %}
+<div class="">
+    <div class="text-center">
+        <span class="d-inline-block mr-3">
+            <i class="far fa-check-circle fa-5x text-success animate__animated animate__tada mt-5 mb-3"></i>
+        </span>
+
+        <h5 class="animate__animated animate__pulse">Thank you!</h5>
+        <p>Your order finished successfuly!</p>
+        <a href="/user" class="btn btn-lg mb-4 mt-4 btn-outline-primary">
+            <i class="far fa-user-circle"></i>
+            Go to your account
+        </a>
+    </div>
+</div>
+{% elseif status == "cancel" %}
+<div class="">
+    <div class="text-center">
+        <span class="d-inline-block mr-3">
+            <i class="far fa-times-circle fa-5x text-secondary animate__animated animate__tada mt-5 mb-3"></i>
+        </span>
+        <h5 class="animate__animated animate__pulse">Canceled!</h5>
+        <p>Your order was canceled!</p>
+        <a href="/user" class="btn btn-lg mb-4 mt-4 btn-outline-primary">
+            <i class="far fa-user-circle"></i>
+            Go to your account
+        </a>
+    </div>
+</div>
+{% else %}
+<div class="">
+    <div class="text-center">
+        <span class="d-inline-block mr-3">
+            <i class="far fa-times-circle fa-5x text-danger animate__animated animate__tada mt-5 mb-3"></i>
+        </span>
+        <h5 class="animate__animated animate__pulse">Error!</h5>
+        <p>Something unexpected!</p>
+        <a href="/user" class="btn btn-lg mb-4 mt-4 btn-outline-primary">
+            <i class="far fa-user-circle"></i>
+            Go to your account
+        </a>
+    </div>
+</div>
+{% endif %}

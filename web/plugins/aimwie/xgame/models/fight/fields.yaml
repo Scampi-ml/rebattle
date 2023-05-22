@@ -1,0 +1,5 @@
+fields:
+    user_id:
+        label: 'User ID'
+        span: auto
+        type: text

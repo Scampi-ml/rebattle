@@ -1,0 +1,5 @@
+<?php
+if ($record->success_rate && $record->opponent->rewards_sr_sum) {
+    echo round(($record->success_rate/$record->opponent->rewards_sr_sum)*100, 2)."%";
+}
+?>

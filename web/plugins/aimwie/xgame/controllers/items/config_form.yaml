@@ -1,0 +1,10 @@
+name: Items
+form: $/aimwie/xgame/models/item/fields.yaml
+modelClass: Aimwie\Xgame\Models\Item
+defaultRedirect: aimwie/xgame/items
+create:
+    redirect: 'aimwie/xgame/items/update/:id'
+    redirectClose: aimwie/xgame/items
+update:
+    redirect: aimwie/xgame/items
+    redirectClose: aimwie/xgame/items

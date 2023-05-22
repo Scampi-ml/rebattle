@@ -1,0 +1,38 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    title:
+        label: Title
+        type: text
+        select: title
+        relation: action
+
+
+
+    title:
+        label: Title
+        type: text
+        select: title
+        relation: action
+    description:
+        label: Description
+        type: text
+        select: description
+        relation: action
+    type:
+        label: Type
+        type: text
+        select: type
+        relation: action
+    ap:
+        label: AP
+        type: text
+        select: ap
+        relation: action
+    amount:
+        label: Amount
+        type: text
+        select: amount
+        relation: action

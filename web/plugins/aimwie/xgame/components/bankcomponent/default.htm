@@ -1,0 +1,133 @@
+<h3 class="pt-3 animate__animated animate__fadeInDown">
+    <i class="fas fa-piggy-bank"></i>
+    Bank
+</h3>
+<hr>
+
+<div class="row">
+    <div class="col-lg-6">
+        <h5 class="animate__animated animate__fadeInDown"><i class="fas fa-shopping-bag"></i> Inventory ({{ user.storage }}/{{ user.storage_max }})</h5>
+
+        <div class="container-inventory pb-4" style="width: 432px;">
+            {% for userItem in userItems %}
+            <a href="#modal-item" class="item tt" title="{{ userItem.item.title }}" @click="showItem({id: '{{ userItem.item_id }}', uid: '{{ userItem.id }}', mode: 'bank_inventory'})">
+                <img src="{{ userItem.item.img_url }}" alt="" class="animate__animated animate__fadeIn" />
+            </a>
+            {% endfor %}
+            {% set emptySlots = (user.storage_max - user.storage) %}
+            {% if emptySlots > 0 %}
+            {% for i in 1..emptySlots %}
+            <span class="item">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        {# not perfect placement #}
+        <hr class="mt-5 mb-3">
+            <h5 class="animate__animated animate__fadeInDown">
+                <i class="fas fa-wallet"></i>
+                Transfer
+            </h5>
+            <p class="text-secondary small">
+                <i class="fas fa-info-circle"></i>
+                If you want to send coins or gems to someone,
+                you can do it through transfer.<br>
+                It costs 1% of the amount sent or 10 of the chosen currency type, whichever is higher.
+            </p>   
+                {{ form_ajax('onSendCurrency') }}
+                    <div class="form-group">
+                        <label for="playerName">Player name</label>
+                        <div class="input-group mb-3">
+                             <span class="input-group-text text-secondary">
+                                <i class="fas fa-at"></i>
+                            </span>
+                            <input name="player_name" type="text" class="form-control" id="playerName" value="">
+                        </div>
+                        <label for="amount">Amount</label>
+                        <div class="mb-3 row">
+                            <div class="col-6">
+                                
+                                <input name="amount" type="number" class="form-control" id="amount" value="" min="1" max="{{ user.coins }}">
+                            </div>
+                            <div class="col-6">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="type" id="coins" value="coins" checked> <i class="fas fa-coins text-warning"></i>
+                                        <span class="d-xl-inline d-sm-inline d-none d-lg-none"> Coins</span>
+                                    </label>
+                            
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="type" id="gems" value="gems"> <i class="fas fa-gem text-danger"></i>
+                                        <span class="d-xl-inline d-sm-inline d-none d-lg-none"> Gems</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <a data-request="onSendCurrency" data-request-data="step: '1'" class="btn btn-primary mt-2">Send currency</a>                        
+                    </div>
+                    <div id="bankcomponent-transfer"></div>
+                {{ form_close() }}
+        
+    </div>
+    <div class="col-lg-6">
+
+        {% set safeItemsCount = safeItems|length %}
+        {% set emptySlots = safeSlots - safeItemsCount %}
+        <h5 class="animate__animated animate__fadeInDown">
+            <i class="fas fa-key"></i>
+            Private safe ({{ safeItemsCount }}/{{safeSlots}})
+        </h5>
+        <p class="text-secondary small">
+            <i class="fas fa-info-circle"></i>
+            If you don't have enough storage space,
+            you can put item in safe.<br>
+            It costs 5% of the item value, when you put item in for unlimited time.
+        </p>
+        <div class="container-inventory" style="width: 432px;">
+            {% for safeItem in safeItems %}
+            <a href="#modal-item" class="item tt" title="{{ safeItem.item.title }}" @click="showItem({id: '{{ safeItem.item_id }}', bid: '{{ safeItem.id }}', mode: 'bank_safe'})">
+                <img src="{{ safeItem.item.img_url }}" alt="" class="animate__animated animate__fadeIn" />
+            </a>
+            {% endfor %}
+            {% if emptySlots > 0 %}
+            {% for i in 1..emptySlots %}
+            <span class="item">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <hr>
+        {% set pledgeItemsCount = pledgeItems|length %}
+        {% set emptySlots = pledgeSlots - pledgeItemsCount %}
+        <h5 class="animate__animated animate__fadeInDown">
+            <i class="fas fa-fas fa-hand-holding-usd"></i>
+            Pledge ({{ pledgeItemsCount }}/{{pledgeSlots}})
+        </h5>
+        <p class="text-secondary small">
+            <i class="fas fa-info-circle"></i>
+            If you need urgent coins, you can pledge the item for 70% of its value.<br>
+            To get it back you have to pay 80%, +1% for each day.<br>
+            If pledge is not paid off after 20 days the item will be deleted.
+        </p>
+        <div class="container-inventory" style="width: 432px;">
+            {% for pledgeItem in pledgeItems %}
+            <a href="#modal-item" class="item tt" title="{{ pledgeItem.item.title }}" @click="showItem({id: '{{ pledgeItem.item_id }}', bid: '{{ pledgeItem.id }}', mode: 'bank_pledge'})">
+                <img src="{{ pledgeItem.item.img_url }}" alt="" class="animate__animated animate__fadeIn" />
+            </a>
+            {% endfor %}
+            {% set emptySlots = pledgeSlots - pledgeItems|length %}
+            {% if emptySlots > 0 %}
+            {% for i in 1..emptySlots %}
+            <span class="item">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+</div>

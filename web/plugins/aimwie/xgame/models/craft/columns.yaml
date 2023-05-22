@@ -1,0 +1,43 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    item:
+        label: Item
+        type: partial
+    items_count:
+        label: Items
+        type: number
+    craft_key:
+        label: Key
+        type: text
+        searchable: true
+        sortable: true
+    has_dublicate:
+        label: Dublicate
+        type: switch
+        sortable: true
+    level:
+        label: Level
+        type: number
+        sortable: true
+    coins:
+        label: Coins
+        type: number
+        sortable: true
+    gems:
+        label: Gems
+        type: number
+        sortable: true
+    success_rate:
+        label: 'Success Rate'
+        type: number
+        sortable: true
+    created_at:
+        label: Created
+        type: datetime
+    updated_at:
+        label: Updated
+        type: datetime

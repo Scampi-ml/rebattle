@@ -1,0 +1,65 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    title:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true
+    img_url:
+        label: Img
+        type: partial
+        searchable: false
+        sortable: false
+    level:
+        label: Level
+        type: number
+        sortable: true
+    price_coins:
+        label: Coins(price)
+        type: number
+        sortable: true
+    price_gems:
+        label: Gems(price)
+        type: number
+        sortable: true
+    type_id:
+        label: Type
+        type: text
+        sortable: true
+    hp:
+        label: HP
+        type: number
+        sortable: true
+    ap:
+        label: AP
+        type: number
+        sortable: true
+    power:
+        label: power
+        type: number
+        sortable: true
+    defense:
+        label: Defense
+        type: number
+        sortable: true
+    critical:
+        label: Critical
+        type: number
+        sortable: true
+    storage_max:
+        label: 'Storage size'
+        type: number
+        sortable: true
+    created_at:
+        label: Creaated
+        type: datetime
+        invisible: true
+        sortable: true
+    updated_at:
+        label: Updated
+        type: datetime
+        invisible: true
+        sortable: true

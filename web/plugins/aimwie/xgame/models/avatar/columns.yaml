@@ -1,0 +1,27 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    img_url:
+        label: Image
+        type: partial
+    title:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true
+    level:
+        label: Level
+        type: number
+        sortable: true
+    is_public:
+        label: Public
+        type: switch
+        sortable: true
+    created_at:
+        label: Created
+        type: datetime
+    updated_at:
+        label: Updated
+        type: datetime

@@ -1,0 +1,35 @@
+<div class="text-center">
+    <a class="btn btn-sm btn-outline-secondary"
+        href="javascript:;"
+        onclick="$('#accountDeactivateForm').toggle()">
+        Deactivate account
+    </a>
+</div>
+
+<div id="accountDeactivateForm" style="display: none">
+    {{ form_ajax('onDeactivate') }}
+        <hr />
+        <h5>Deactivate your account?</h5>
+        <p>
+            Your account will be disabled and your details removed from the site.
+            You can reactivate your account any time by signing back in.
+        </p>
+        <div class="form-group">
+            <label for="accountDeletePassword">To continue, please enter your password:</label>
+            <input name="password" type="password" class="form-control" id="accountDeletePassword" />
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-danger m-2">
+                <i class="far fa-sad-cry"></i>
+                Confirm
+            </button>
+            <a class="btn btn-outline-secondary m-2"
+                href="javascript:;"
+                onclick="$('#accountDeactivateForm').toggle()">
+                <i class="far fa-smile"></i>
+    
+                I changed my mind
+            </a>
+        </div>
+    {{ form_close() }}
+</div>

@@ -1,0 +1,44 @@
+plugin:
+    name: 'aimwie.xgame::lang.plugin.name'
+    description: 'aimwie.xgame::lang.plugin.description'
+    author: Aimwie
+    icon: oc-icon-child
+    homepage: ''
+navigation:
+    aimwie-xgame:
+        label: xGame
+        url: aimwie/xgame/dashboard
+        icon: icon-gamepad
+        sideMenu:
+            aimwie-xgame-dashboard:
+                label: xDashboard
+                url: /
+                icon: icon-dashboard
+            aimwie-xgame-items:
+                label: Items
+                url: /aimwie/xgame/items
+                icon: icon-suitcase
+            aimwie-xgame-levels:
+                label: Levels
+                url: aimwie/xgame/levels
+                icon: icon-signal
+            aimwie-xgame-avataars:
+                label: Avatars
+                url: aimwie/xgame/avatars
+                icon: icon-drupal
+            aimwie-xgame-opponents:
+                label: Opponents
+                url: aimwie/xgame/opponents
+                icon: icon-qq
+            aimwie-xgame-fights:
+                label: Fights
+                url: aimwie/xgame/fights
+                icon: icon-bolt
+            aimwie-xgame-actions:
+                label: Actions
+                url: aimwie/xgame/actions
+                icon: icon-fire
+            aimwie-xgame-crafts:
+                label: Crafts
+                url: aimwie/xgame/crafts
+                icon: icon-exchange

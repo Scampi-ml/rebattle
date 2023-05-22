@@ -1,0 +1,101 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        required: 1
+        type: text
+    type_id:
+        label: Type
+        options:
+            weapon: Weapon
+            shield: Shield
+            helmet: Helmet
+            armor: Armor
+            pants: Pants
+            boots: Boots
+            bag: 'Bag (storage)'
+            item: Item
+        showSearch: true
+        span: auto
+        required: 1
+        type: dropdown
+        comment: 'How item can be used'
+tabs:
+    fields:
+        price_coins:
+            label: 'Price Coins'
+            span: auto
+            type: number
+            comment: 'Value in coins.'
+            tab: 'Price&Details'
+        price_gems:
+            label: 'Price Gems'
+            span: auto
+            type: number
+            comment: 'Value in Gams, if empty, not compared in gems.'
+            tab: 'Price&Details'
+        img:
+            label: Image
+            mode: image
+            imageWidth: '100'
+            imageHeight: '100'
+            fileTypes: 'jpg, jpeg, png'
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: png
+            span: auto
+            type: fileupload
+            comment: 'Image must be 1:1 ratio, at least 100x100px'
+            tab: 'Price&Details'
+        level:
+            label: 'Minimal level'
+            span: auto
+            type: text
+            comment: 'Minimal level to use item'
+            tab: Stats
+        storage_max:
+            label: 'Storage max size'
+            span: auto
+            required: 0
+            type: number
+            comment: 'Increese storage max size (storage)'
+            tab: Stats
+        hp:
+            label: HP
+            span: auto
+            type: number
+            comment: 'How many health points added'
+            tab: Stats
+        ap:
+            label: AP
+            span: auto
+            type: number
+            comment: 'How many action points added'
+            tab: Stats
+        power:
+            label: Power
+            span: auto
+            type: number
+            comment: 'How many power points added'
+            tab: Stats
+        critical:
+            label: 'Critical +%'
+            span: auto
+            type: number
+            comment: 'Procentage increese in critial hit  (x2, or other ratio)'
+            tab: Stats
+        defense:
+            label: Defense
+            span: auto
+            type: number
+            comment: 'How many defense points added'
+            tab: Stats
+        actions:
+            path: $/aimwie/xgame/controllers/items/_actions.htm
+            context:
+                - update
+                - preview
+            type: partial
+            tab: Actions
+            span: full

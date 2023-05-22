@@ -1,0 +1,33 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        required: 1
+        type: text
+        comment: 'Avatar title'
+    is_public:
+        label: Public
+        span: auto
+        type: switch
+        comment: 'Is publicly available.'
+    level:
+        label: Level
+        span: auto
+        type: number
+        comment: 'Available from specific level'
+tabs:
+    fields:
+        img:
+            label: Image
+            mode: image
+            imageWidth: '100'
+            imageHeight: '150'
+            fileTypes: png
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: png
+            span: auto
+            type: fileupload
+            comment: 'Upload transparent PNG avatar min 100x150px'
+            tab: Image

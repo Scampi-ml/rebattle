@@ -1,0 +1,13 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+        width: 100px
+    item:
+        label: Item
+        type: partial
+    location:
+        label: Location
+        type: text
+        sortable: true

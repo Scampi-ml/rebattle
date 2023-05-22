@@ -1,0 +1,11 @@
+fields:
+    xp:
+        label: XP
+        span: auto
+        type: text
+        comment: 'Experience points need to reach'
+    points:
+        label: Points
+        span: auto
+        type: text
+        comment: 'How many points given when reached next level'

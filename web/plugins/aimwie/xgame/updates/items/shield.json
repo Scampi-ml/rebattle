@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Wooden shield",
+        "price_coins": 15,
+        "price_gems": 5,
+        "type_id": "shield",
+        "level": 1,
+        "hp": 0,
+        "ap": 0,
+        "power": 0,
+        "defense": 1,
+        "critical": 0,
+        "storage_max": 0,
+        "img": "shield/1.png"
+    },
+    {
+        "title": "Dungen shield",
+        "price_coins": 15,
+        "price_gems": 5,
+        "type_id": "shield",
+        "level": 1,
+        "hp": 0,
+        "ap": 0,
+        "power": 0,
+        "defense": 1,
+        "critical": 0,
+        "storage_max": 0,
+        "img": "shield/4.png"
+    }
+]

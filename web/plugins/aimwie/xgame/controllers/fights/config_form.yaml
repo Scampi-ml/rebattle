@@ -1,0 +1,10 @@
+name: Fights
+form: $/aimwie/xgame/models/fight/fields.yaml
+modelClass: Aimwie\Xgame\Models\Fight
+defaultRedirect: aimwie/xgame/fights
+create:
+    redirect: 'aimwie/xgame/fights/update/:id'
+    redirectClose: aimwie/xgame/fights
+update:
+    redirect: aimwie/xgame/fights
+    redirectClose: aimwie/xgame/fights

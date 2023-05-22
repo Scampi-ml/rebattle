@@ -1,0 +1,8 @@
+<script>
+$(document).on('ajaxDone', function (event, context) {
+    console.log("context.handler", context.handler);
+    if (context.handler == 'onRelationButtonDelete' || context.handler == 'onRelationManageCreate') {
+        location.reload();
+    }
+});    
+</script>

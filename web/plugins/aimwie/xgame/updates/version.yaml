@@ -1,0 +1,80 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Add User Fields'
+    - add_user_fields.php
+1.0.3:
+    - 'Created table aimwie_xgame_levels'
+    - builder_table_create_aimwie_xgame_levels.php
+1.0.4:
+    - 'Created table aimwie_xgame_fights'
+    - builder_table_create_aimwie_xgame_fights.php
+1.0.5:
+    - 'Created table aimwie_xgame_fights_archive'
+    - builder_table_create_aimwie_xgame_fights_archive.php
+1.0.6:
+    - 'Created table aimwie_xgame_fight_rounds'
+    - builder_table_create_aimwie_xgame_fight_rounds.php
+1.0.7:
+    - 'Created table aimwie_xgame_fight_rounds_archive'
+    - builder_table_create_aimwie_xgame_fight_rounds_archive.php
+1.0.8:
+    - 'Created table aimwie_xgame_items'
+    - builder_table_create_aimwie_xgame_items.php
+1.0.9:
+    - 'Created table aimwie_xgame_user_items'
+    - builder_table_create_aimwie_xgame_user_items.php
+1.0.10:
+    - 'Created table aimwie_xgame_avatars'
+    - builder_table_create_aimwie_xgame_avatars.php
+1.0.11:
+    - 'Created table aimwie_xgame_opponents'
+    - builder_table_create_aimwie_xgame_opponents.php
+1.0.12:
+    - 'Created table aimwie_xgame_opponent_items'
+    - builder_table_create_aimwie_xgame_opponent_items.php
+1.0.13:
+    - 'Created table aimwie_xgame_opponent_rewards'
+    - builder_table_create_aimwie_xgame_opponent_rewards.php
+1.0.14:
+    - 'Created table aimwie_xgame_crafts'
+    - builder_table_create_aimwie_xgame_crafts.php
+1.0.15:
+    - 'Created table aimwie_xgame_craft_items'
+    - builder_table_create_aimwie_xgame_craft_items.php
+1.0.16:
+    - 'Created table aimwie_xgame_actions'
+    - builder_table_create_aimwie_xgame_actions.php
+1.0.17:
+    - 'Created table aimwie_xgame_item_actions'
+    - builder_table_create_aimwie_xgame_item_actions.php
+1.0.18:
+    - 'Created table aimwie_xgame_market_items'
+    - builder_table_create_aimwie_xgame_market_items.php
+1.0.19:
+    - 'Created table aimwie_xgame_bank_items'
+    - builder_table_create_aimwie_xgame_bank_items.php
+2.0.1:
+    - 'Seed Levels'
+    - seed_levels.php
+2.0.2:
+    - 'Seed Actions'
+    - seed_actions.php
+2.0.3:
+    - 'Seed items'
+    - seed_items.php
+2.0.4:
+    - 'Seed avatars'
+    - seed_avatars.php
+2.0.5:
+    - 'Seed opponents'
+    - seed_opponents.php
+2.0.6:
+    - 'Seed Market Items'
+    - seed_market_items.php
+2.0.7:
+    - 'Seed Crafts'
+    - seed_crafts.php
+2.0.8:
+    - 'Seed Users with sample data'
+    - seed_users.php

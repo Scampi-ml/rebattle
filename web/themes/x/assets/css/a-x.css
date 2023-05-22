@@ -1,0 +1,255 @@
+/* bowlby-one-sc-regular - latin */
+@font-face {
+  font-family: 'Bowlby One SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/bowlby-one-sc-v12-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/bowlby-one-sc-v12-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/bowlby-one-sc-v12-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/bowlby-one-sc-v12-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/bowlby-one-sc-v12-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/bowlby-one-sc-v12-latin-regular.svg#BowlbyOneSC') format('svg'); /* Legacy iOS */
+}
+/* overlock-regular - latin */
+@font-face {
+  font-family: 'Overlock';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/overlock-v10-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/overlock-v10-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/overlock-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/overlock-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/overlock-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/overlock-v10-latin-regular.svg#Overlock') format('svg'); /* Legacy iOS */
+}
+/* overlock-700 - latin */
+@font-face {
+  font-family: 'Overlock';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/overlock-v10-latin-700.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/overlock-v10-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/overlock-v10-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/overlock-v10-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/overlock-v10-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/overlock-v10-latin-700.svg#Overlock') format('svg'); /* Legacy iOS */
+}
+body {
+    font-family: 'Overlock', cursive;
+    min-height: 75rem;
+    padding-top: 4.5rem;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .hx {
+  font-family: 'Bowlby One SC', cursive;
+}
+.font-regular {
+  font-family: 'Overlock', cursive;
+}
+
+.navbar-brand img {
+  height: 30px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  transition: 0.5s;
+}
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+  color: #fff;
+  text-shadow: 0 0 7px #fff;
+  transform: scale(1.1);
+}
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #fff;
+  text-shadow: 0 0 10px #fff;
+  transform: scale(1.1);
+}
+.navbar-dark {
+  -webkit-box-shadow: 0px 0px 20px 2px #000000; 
+  box-shadow: 0px 0px 10px 2px #000000; 
+}
+
+.game-brand {
+  color: #f5f5f5;
+  transform: rotate(-5deg);
+  -webkit-transform: rotate(-5deg);
+  -moz-transform: rotate(-5deg);
+  transform: skew(-5deg); 
+  -webkit-transform: skew(-5deg); 
+  -moz-transform: skew(-5deg); 
+
+  text-shadow: rgb(194, 193, 170) 3px 0px 0px, rgb(194, 193, 170) 2.83487px 0.981584px 0px, rgb(194, 193, 170) 2.35766px 1.85511px 0px, rgb(194, 193, 170) 1.62091px 2.52441px 0px, rgb(194, 193, 170) 0.705713px 2.91581px 0px, rgb(194, 193, 170) -0.287171px 2.98622px 0px, rgb(194, 193, 170) -1.24844px 2.72789px 0px, rgb(194, 193, 170) -2.07227px 2.16926px 0px, rgb(194, 193, 170) -2.66798px 1.37182px 0px, rgb(194, 193, 170) -2.96998px 0.42336px 0px, rgb(194, 193, 170) -2.94502px -0.571704px 0px, rgb(194, 193, 170) -2.59586px -1.50383px 0px, rgb(194, 193, 170) -1.96093px -2.27041px 0px, rgb(194, 193, 170) -1.11013px -2.78704px 0px, rgb(194, 193, 170) -0.137119px -2.99686px 0px, rgb(194, 193, 170) 0.850987px -2.87677px 0px, rgb(194, 193, 170) 1.74541px -2.43999px 0px, rgb(194, 193, 170) 2.44769px -1.73459px 0px, rgb(194, 193, 170) 2.88051px -0.838247px 0px;
+}
+
+.hit-container {
+  height: 400px;
+  margin-bottom: -400px;
+}
+
+.btn {
+  font-family: 'Bowlby One SC', cursive;
+  box-shadow: 0 4px 1px -2px grey;
+}
+
+.item, .item-lg {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border-radius: 4px;
+  border: solid #888 1px;
+  overflow: hidden;
+  background: rgb(204,204,204);
+  box-shadow: 0 4px 1px -2px rgba(0,0,0,0.5);
+}
+a.item, a.item-lg {
+  background: rgb(204,204,204);
+  background: linear-gradient(0deg, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 100%);
+  transition: 0.5s;
+}
+a.item:hover, a.item-lg:hover {
+  background: rgb(204,204,204);
+  background: linear-gradient(0deg, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 100%);
+}
+span.item, span.item-lg {
+  box-shadow: 0 4px 1px -2px rgba(0,0,0,0.5), 0 3px 6px rgba(0, 0, 0, 0.5) inset;
+}
+span.item.wear,
+span.item-lg.wear {
+  background-image: url('../img/empty_2.png');
+  background-size: auto 100%;
+}
+span.item.wear.armor {
+  background-position: -48px 0px;
+}
+span.item.wear.pants {
+  background-position: -96px 0px;
+}
+span.item.wear.boots {
+  background-position: -144px 0px;
+}
+span.item.wear.weapon {
+  background-position: -192px 0px;
+}
+span.item.wear.shield {
+  background-position: -240px 0px;
+}
+span.item.wear.bag {
+  background-position: -288px 0px;
+}
+span.item-lg.wear.bag {
+  background-position: -576px 0px;
+}
+.item.selected img {
+  opacity: 0.2!important;
+}
+.item img {
+  max-height: 50px;
+  max-width: 50px;
+}
+.item-lg {
+  height: 100px;
+  width: 100px;
+  border-radius: 8px;
+  border: solid #888 2px;
+  box-shadow: 0 4px 2px -2px grey;
+}
+.item-lg img {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.reward-quantity {
+  position: absolute;
+  font-family: 'Bowlby One SC', cursive;
+  text-align: center;
+  font-size: 12px;
+  width: 50px;
+  padding-top: 6px;
+}
+.player-container {
+  margin-bottom: 10px;
+  min-width: 210px;
+}
+
+.player-avater-container {
+  width: 100px;
+  height: 150px;
+  float: left;
+  margin-right: 10px;
+}
+.player-avatar {
+  max-width: 100px;
+  max-height: 150px;
+}
+.player-bottom-container {
+  clear: both;
+  margin-bottom: 10px;
+}
+.player-weapon-container {
+  float: left;
+  margin-right: 5px;
+}
+.player-shield-container {
+  float: left;
+  margin-right: 5px
+}
+.player-boots-container {
+  float: left;
+}
+.player-stats {
+  margin-top: 10px;
+  padding-top: 10px;
+  clear:both;
+}
+.progress-text {
+  position: absolute;
+  width: 210px;
+  padding-left: 5px;
+  font-size: 12px;
+  text-align: left;
+  color: #fff;
+  font-family: 'Bowlby One SC', cursive;
+}
+
+.opponent-list .opponent-list-item {
+  background: #eee;
+  border-radius: 4px;
+}
+.opponent-list .opponent-list-item:hover {
+  background: #ddd;
+}
+
+.btn-action {
+  width: 50px;
+  height:50px;
+  font-size: 20px;
+  padding-top: 10px;
+  border-radius: 25px;
+}
+.badge-action {
+  display: inline-block;
+  border: #993300 1px solid;
+  color: #993300;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  padding: 0px;
+  text-align: center;
+  border-radius: 15px;
+  margin: 0px 1px 5px 0px;
+  transition: 0.5s;
+}
+.badge-action:hover {
+  transform: scale(1.2);
+}
+.btn-rx {
+  transition: 0.2s;
+}
+.btn-rx:hover {
+  transform: perspective(100px) rotateX(-10deg) rotateY(-5deg) scale(1.1);
+  box-shadow: 0 6px 2px 0px grey;
+}

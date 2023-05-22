@@ -1,0 +1,91 @@
+[
+    
+    {
+        "title": "STOP",
+        "description": "Stop opponent selected action",
+        "icon": "fas fa-ban",
+        "ap": 1,    
+        "type": "stop",    
+        "amount": null
+    },
+    {
+        "title": "RANDOM BLOCK",
+        "description": "Randomize opponent block",
+        "icon": "fas fa-dice",
+        "ap": 1,
+        "type": "random_block",
+        "amount": null
+    },
+    {
+        "title": "RANDOM ATTACK",
+        "description": "Randomize opponent attack",
+        "icon": "fas fa-dice",
+        "ap": 1,
+        "type": "random_attack",
+        "amount": null
+    },
+    {
+        "title": "RANDOM BLOCK+ATTACK",
+        "description": "Randomize opponent attack & block",
+        "icon": "fas fa-dice",
+        "ap": 1,
+        "type": "random_both",
+        "amount": null
+    },
+    {
+        "title": "PING PONG",
+        "description": "If both of you select same attack, than you switch with attack hit power.",
+        "icon": "fas fa-table-tennis",
+        "ap": 1,
+        "type": "ping_pong",
+        "amount": null
+    },
+    {
+        "title": "EXPLODE",
+        "description": "If opponent does a critical hit, he will attack himself as well.",
+        "icon": "fas fa-bomb",
+        "ap": 1,
+        "type": "critical_back",
+        "amount": null
+    },
+    {
+        "title": "POWER HEAL",
+        "description": "If opponent attack you with critical hit, get health points same amount as your power points.",
+        "icon": "fas fa-heart-broken",
+        "ap": 1,
+        "type": "power_heal",
+        "amount": null
+    },
+    {
+        "title": "1 HP",
+        "description": "+1 health point",
+        "icon": "fas fa-heart",
+        "ap": 1,
+        "type": "hp",
+        "amount": 1
+    },
+    {
+        "title": "5 HP",
+        "description": "+5 health point",
+        "icon": "fas fa-heart",
+        "ap": 5,
+        "type": "hp",
+        "amount": 5
+    },
+    {
+        "title": "+20% POWER",
+        "description": "20% power increase",
+        "icon": "fas fa-bolt",
+        "ap": 1,
+        "type": "power_procent",
+        "amount": 20
+    },
+    {
+        "title": "+20% DEFENSE",
+        "description": "20% defense increase",
+        "icon": "fas fa-shield-virus",
+        "ap": 1,
+        "type": "defense_procent",
+        "amount": 20
+    }
+]

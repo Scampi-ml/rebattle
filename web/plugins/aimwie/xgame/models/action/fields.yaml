@@ -1,0 +1,51 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        required: 1
+        type: text
+    description:
+        label: Description
+        span: auto
+        required: 1
+        type: text
+    ap:
+        label: AP
+        span: auto
+        default: '1'
+        required: 1
+        attributes:
+            min: '1'
+            max: '10000'
+        type: number
+        comment: 'Action points required'
+    icon:
+        label: Icon
+        span: auto
+        required: 1
+        type: text
+        comment: 'CSS class from font awesome'
+    type:
+        label: Type
+        showSearch: true
+        span: auto
+        required: 1
+        type: dropdown
+        comment: 'Action type'
+        options:
+            hp: hp - (+ X points)
+            ap: ap - (+ X points)
+            defense_procent: defense_procent - defense +%
+            power_procent: power_procent - +%
+            power_heal: power_heal - If opponent attack you with critical hit, get health points same amount as your power points.
+            critical_back: critical_back - If opponent does a critical hit, he will attack himself as well.
+            ping_pong: ping_pong - If both of you select same attack, than you switch with attack hit power.
+            random_both: random_both - Randomize opponent attack & block
+            random_attack: random_attack - Randomize opponent attack
+            random_block: random_block - Randomize opponent block
+            stop: stop - Stop opponent selected action
+    amount:
+        label: Amount
+        span: auto
+        type: number
+        comment: 'Some of action types need to specify amount (i.e. +HP, +POWER%, etc.)'

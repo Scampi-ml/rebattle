@@ -1,0 +1,202 @@
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="pt-3 animate__animated animate__fadeInDown">
+            <i class="fas fa-fist-raised"></i>
+            Fight arena
+        </h3>
+    </div>
+    <div class="col-md-6 p-2 text-center text-md-end">
+        <a href="/arena/empire" class="btn btn-sm mb-2 btn-outline-secondary{{ section == 'empire' ? ' active' : '' }}">
+            <i class="fas fa-crown"></i>
+            Empire opponents
+        </a>
+        <a href="/arena/pvp" class="btn btn-sm mb-2 btn-outline-secondary{{ section == 'pvp' ? ' active' : '' }}">
+            <i class="fas fa-hat-cowboy"></i>
+            PVP opponents
+        </a>
+        <a href="#" class="btn btn-sm mb-2 btn-outline-primary" data-request="onStartPvp">
+            <i class="fas fa-hat-cowboy"></i>
+            Start PVP
+        </a>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 bg-light border rounded pt-2">
+        {% partial 'user_side' %}
+    </div>
+    <div class="col-sm-6 col-md-8 col-lg-9">
+        <h5 class="animate__animated animate__fadeInDown">
+            {% if section == 'pvp' %}
+            <i class="fas fa-hat-cowboy"></i>
+            PVP opponents
+            {% else %}
+            <i class="fas fa-crown"></i>
+            Empire Opponents
+            {% endif %}
+        </h5>
+        <div class="opponent-list">
+            <div class="row">
+                {% for opponent in opponents %}
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="opponent-list-item p-3 mb-3">
+                        <h5 class="">
+                            {% if section == 'pvp' %}
+                            <a href="/player/{{ opponent.player_name }}" class="text-decoration-none text-dark">
+                                <i class="fas fa-hat-cowboy"></i>
+                                {{ opponent.player_name }}
+                            </a>
+                            {% else %}
+                            <i class="fas fa-crown"></i>
+                            {{ opponent.player_name }}
+                            {% endif %}
+                        </h5>
+                        
+                        <div class="player-container">
+                            <div class="player-avater-container">
+                                <img src="{{ opponent.img_url }}" class="player-avatar" alt="">
+                            </div>
+                            <div class="player-helmet-container">
+                                {% if opponent.items_cache['helmet'] %}
+                                <a href="#modal-item" class="item tt" title="{{ opponent.items_cache['helmet'].item.title }}" @click="showItem({id: '{{ opponent.items_cache['helmet'].item_id }}', 'mode': 'simple'})">
+                                    <img src="{{ opponent.items_cache['helmet'].item.img_url }}" title="{{ opponent.items_cache['helmet'].item.title  }}" />
+                                </a>
+                                {% else %}
+                                <span class="item wear helmet">
+                                    <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+                                </span>
+                                {% endif %}
+                            </div>
+                            <div class="player-armor-container">
+                                {% if opponent.items_cache['armor'] %}
+                                <a href="#modal-item" class="item tt" title="{{ opponent.items_cache['armor'].item.title }}" @click="showItem({id: '{{ opponent.items_cache['armor'].item_id }}', 'mode': 'simple'})">
+                                    <img src="{{ opponent.items_cache['armor'].item.img_url }}" title="{{ opponent.items_cache['armor'].item.title  }}" />
+                                </a>
+                                {% else %}
+                                <span class="item wear armor">
+                                    <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+                                </span>
+                                {% endif %}
+                            </div>
+                            <div class="player-pants-container">
+                                {% if opponent.items_cache['pants'] %}
+                                <a href="#modal-item" class="item tt" title="{{ opponent.items_cache['pants'].item.title }}" @click="showItem({id: '{{ opponent.items_cache['pants'].item_id }}', 'mode': 'simple'})">
+                                    <img src="{{ opponent.items_cache['pants'].item.img_url }}" title="{{ opponent.items_cache['pants'].item.title  }}" />
+                                </a>
+                                {% else %}
+                                <span class="item wear pants">
+                                    <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+                                </span>
+                                {% endif %}
+                            </div>
+                            <div class="player-bottom-container">
+                                <div class="player-weapon-container">
+                                    {% if opponent.items_cache['weapon'] %}
+                                    <a href="#modal-item" class="item tt" title="{{ opponent.items_cache['weapon'].item.title }}" @click="showItem({id: '{{ opponent.items_cache['weapon'].item_id }}', 'mode': 'simple'})">
+                                        <img src="{{ opponent.items_cache['weapon'].item.img_url }}" title="{{ opponent.items_cache['weapon'].item.title  }}" />
+                                    </a>
+                                    {% else %}
+                                    <span class="item wear weapon">
+                                        <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+                                    </span>
+                                    {% endif %}     
+                                </div>
+                                <div class="player-shield-container">
+                                    {% if opponent.items_cache['shield'] %}
+                                    <a href="#modal-item" class="item tt" title="{{ opponent.items_cache['shield'].item.title }}" @click="showItem({id: '{{ opponent.items_cache['shield'].item_id }}', 'mode': 'simple'})">
+                                        <img src="{{ opponent.items_cache['shield'].item.img_url }}" title="{{ opponent.items_cache['shield'].item.title  }}" />
+                                    </a>
+                                    {% else %}
+                                    <span class="item wear shield">
+                                        <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+                                    </span>
+                                    {% endif %}          
+                                </div>
+                                <div class="player-boots-container">
+                                    {% if opponent.items_cache['boots'] %}
+                                    <a href="#modal-item" class="item tt" title="{{ opponent.items_cache['boots'].item.title }}" @click="showItem({id: '{{ opponent.items_cache['boots'].item_id }}', 'mode': 'simple'})">
+                                        <img src="{{ opponent.items_cache['boots'].item.img_url }}" title="{{ opponent.items_cache['boots'].item.title  }}" />
+                                    </a>
+                                    {% else %}
+                                    <span class="item wear boots">
+                                        <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="player-stats clear-both mt-0">
+                            <div class="" style="height: 35px;">
+                                {% if opponent.actions_cache|length %}
+                                {% for actionId, action in opponent.actions_cache %}
+                                <span class="badge-action tt" title="[{{ action.ap }}AP] {{ action.title }} - {{ action.description }}">
+                                    <i class="{{ action.icon }}"></i>
+                                </span>
+                                {% endfor %}
+                                {% else %}
+                                <div class="text-center text-secondary">
+                                    <i class="fa fa-info-circle"></i>
+                                    No actions available
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="progress-text">HP {{ opponent.hp_max }}/{{ opponent.hp_max }}</div>
+                            <div class="progress bg-secondary mb-1" title="Health points">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">AP {{ opponent.ap_max }}/{{ opponent.ap_max }}</div>
+                            <div class="progress bg-secondary mb-1" title="Action points">
+                                <div class="progress-bar hx" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress-text">CRITICAL {{ opponent.critical }}/100%</div>
+                            <div class="progress bg-secondary mb-2" title="Critical hit percentage possibility">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ ((opponent.critical/100)*100) }}%" aria-valuenow="{{ ((opponent.critical/100)*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="text-secondary text-center hx">
+                                <i class="fas fa-star "></i> {{ opponent.level }}
+                                <i class="ml-3 fas fa-bolt "></i> {{ opponent.power }}
+                                <i class="ml-3 fas fa-shield-alt "></i> {{ opponent.defense }} 
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            {% if section == "pvp" %}
+                                {% set minLevel = opponent.level %}
+                            {% else %}
+                                {% set minLevel = opponent.min_level %}
+                            {% endif %}
+                            {% if user.level < minLevel %}
+                            <div class="text-secondary p-4" style="height: 64px">
+                                You must reach level <i class="fa fa-star"></i> <span class="hx">{{ minLevel }}</span>
+                            </div>
+                            {% else %}
+                            <a class="btn btn-lg btn-primary mt-2 mb-2 btn-rx" href="#" data-request="onStartFight" data-request-data="{{ section == 'pvp' ? 'user_id' : 'opponent_id' }}: {{ opponent.id }}">
+                                <i class="fas fa-fire-alt"></i>
+                                Fight!
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{ opponents.render|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% put scripts %}
+<script>
+    $(".pagination li").each(function(i) {
+        $(this).addClass("page-item");
+    });
+    $(".pagination a").each(function(i) {
+        $(this).addClass("page-link hx");
+    });
+    $(".pagination span").each(function(i) {
+        $(this).addClass("page-link disabled hx");
+    });
+</script>
+{% endput %}

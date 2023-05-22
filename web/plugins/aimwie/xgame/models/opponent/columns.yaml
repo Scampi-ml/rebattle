@@ -1,0 +1,42 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    img_url:
+        label: Image
+        type: partial
+    player_name:
+        label: Title
+        type: text
+    level:
+        label: LEVEL
+        type: number
+        sortable: true
+    min_level:
+        label: 'Min LEVEL'
+        type: number
+        sortable: true
+    hp_max:
+        label: HP
+        type: number
+        sortable: true
+    ap_max:
+        label: AP
+        type: number
+        sortable: true
+    is_public:
+        label: Public
+        type: switch
+    critical:
+        label: Critical
+        type: number
+        sortable: true
+    created_at:
+        label: Created
+        type: datetime
+        sortable: true
+    updated_at:
+        label: Updated
+        type: datetime
+        sortable: true

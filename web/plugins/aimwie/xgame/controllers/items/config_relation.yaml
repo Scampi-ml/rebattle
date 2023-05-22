@@ -1,0 +1,8 @@
+actions:
+    label: Actions
+    view:
+        list: $/aimwie/xgame/models/itemaction/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/aimwie/xgame/models/itemaction/fields.yaml
+        recordsPerPage: 100

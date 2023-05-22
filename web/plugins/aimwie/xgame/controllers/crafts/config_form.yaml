@@ -1,0 +1,10 @@
+name: Crafts
+form: $/aimwie/xgame/models/craft/fields.yaml
+modelClass: Aimwie\Xgame\Models\Craft
+defaultRedirect: aimwie/xgame/crafts
+create:
+    redirect: 'aimwie/xgame/crafts/update/:id'
+    redirectClose: aimwie/xgame/crafts
+update:
+    redirect: aimwie/xgame/crafts
+    redirectClose: aimwie/xgame/crafts

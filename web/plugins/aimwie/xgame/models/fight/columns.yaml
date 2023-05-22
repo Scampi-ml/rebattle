@@ -1,0 +1,7 @@
+columns:
+    id:
+        label: id
+        type: number
+    user_id:
+        label: 'User ID'
+        type: number

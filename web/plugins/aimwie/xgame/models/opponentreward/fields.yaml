@@ -1,0 +1,41 @@
+fields:
+    reward_type:
+        label: Type
+        options:
+            item: Item
+            coins: Coins
+            gems: Gems
+        showSearch: true
+        span: auto
+        type: dropdown
+    item:
+        label: Item
+        nameFrom: title
+        descriptionFrom: id
+        list: $/aimwie/xgame/models/item/columns.yaml
+        span: auto
+        required: 1
+        trigger:
+            action: show
+            field: reward_type
+            condition: item
+        type: recordfinder
+        comment: 'Reward item'
+    quantity:
+        label: Quantity
+        span: auto
+        default: '1'
+        required: 1
+        attributes:
+            min: '1'
+        type: number
+        comment: 'how many of this items can player get'
+    success_rate:
+        label: 'Success rate'
+        span: auto
+        default: '100'
+        required: 1
+        attributes:
+            min: '1'
+        type: number
+        comment: 'Chance to win = all reward success rate (sum) devided by this item success rate'

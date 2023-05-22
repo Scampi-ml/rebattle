@@ -1,0 +1,10 @@
+fields:
+    item:
+        label: Item
+        nameFrom: title
+        descriptionFrom: type_id
+        list: $/aimwie/xgame/models/item/columns.yaml
+        span: full
+        required: 1
+        type: recordfinder
+        comment: 'Material Item'

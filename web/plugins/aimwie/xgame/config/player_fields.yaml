@@ -1,0 +1,202 @@
+# ==================================
+#  Extended Player Field Definitions
+# ==================================
+
+player_name:
+    label: Player name
+    tab: Player
+    span: full
+    comment: Uniq playername (Alpha Numeric)
+coins:
+    label: Coins
+    type: number
+    tab: Player
+    span: auto
+    comment: Coins in player wallet
+    default: 0
+    attributes:
+        min: '0'
+gems:
+    label: Gems
+    type: number
+    tab: Player
+    span: auto
+    comment: Gems in player wallet
+    default: 0
+    attributes:
+        min: '0'
+level:
+    label: Level
+    type: number
+    tab: Player
+    span: auto
+    comment: Player level
+    default: 0
+    attributes:
+        min: '0'
+add_points:
+    label: Add Points
+    type: number
+    tab: Player
+    span: auto
+    comment: How many points can user add to stats
+    default: 0
+    attributes:
+        min: '0'
+xp:
+    label: XP
+    type: number
+    tab: Player
+    span: auto
+    comment: Current Expierence points
+    default: 0
+    attributes:
+        min: '0'
+xp_max:
+    label: XP (next level)
+    type: number
+    tab: Player
+    span: auto
+    comment: Expierence points to next level
+    default: 100
+    attributes:
+        min: '1'
+_section_stats:
+    label: Player stats
+    type: section
+    tab: Player
+    span: full
+    comment: Player stats
+hp:
+    label: HP
+    type: number
+    tab: Player
+    span: auto
+    default: 0
+    comment: Current Health points
+    attributes:
+        min: '0'
+hp_max:
+    label: HP MAX
+    type: number
+    tab: Player
+    span: auto
+    default: 1
+    comment: Maximal Health points (when full)
+    attributes:
+        min: '1'
+ap:
+    label: AP
+    type: number
+    tab: Player
+    span: auto
+    comment: Current Action points
+    default: 0
+    attributes:
+        min: '0'
+ap_max:
+    label: AP MAX
+    type: number
+    tab: Player
+    span: auto
+    comment: Maximal Action points (when full)
+    default: 1
+    attributes:
+        min: '1'
+power:
+    label: Power
+    type: number
+    tab: Player
+    span: auto
+    comment: Hit power
+    default: 1
+    attributes:
+        min: '0'
+defense:
+    label: Defense
+    type: number
+    tab: Player
+    span: auto
+    comment: Defense points
+    default: 1
+    attributes:
+        min: '0'
+critical:
+    label: Critical hit %
+    type: number
+    type: number
+    tab: Player
+    span: auto
+    comment: % chance to make x2 hit
+    default: 0
+    attributes:
+        min: '0'
+        max: '100'
+_section1:
+    label: Storage
+    type: section
+    tab: Player
+    span: full
+    comment: To increese user storage user must wear larger bag/storage item
+storage:
+    label: Storage
+    type: number
+    tab: Player
+    span: auto
+    readOnly: true
+    comment: How many items ar in inventory
+    default: 0
+    attributes:
+        min: '0'
+storage_max:
+    label: Storage max (capacity)
+    type: number
+    tab: Player
+    span: auto
+    readOnly: true
+    comment: Inventory capacity
+    default: 1
+    attributes:
+        min: '1'
+_section2:
+    label: Win / Lose / Standoff
+    type: section
+    tab: Player
+    span: full
+    comment: Player battle statistics
+win:
+    label: Win
+    type: number
+    tab: Player
+    span: auto
+    default: 0
+    attributes:
+        min: '0'
+lose:
+    label: Lose
+    type: number
+    tab: Player
+    span: auto
+    default: 0
+    attributes:
+        min: '0'
+standoff:
+    label: Standoff
+    type: number
+    tab: Player
+    span: auto
+    default: 0
+    attributes:
+        min: '0'
+_section3:
+    label: Fight meta data
+    type: section
+    tab: Player
+    span: full
+    comment: Player's fight meta data
+is_pvp:
+    label: Started PVP battle
+    type: switch
+    tab: Player
+    span: auto
+    comment: If player has start PVP battle (waiting for opponent)

@@ -1,0 +1,8 @@
+items:
+    label: Items
+    view:
+        list: $/aimwie/xgame/models/craftitem/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/aimwie/xgame/models/craftitem/fields.yaml
+        recordsPerPage: 100

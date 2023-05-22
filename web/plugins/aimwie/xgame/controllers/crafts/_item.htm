@@ -1,0 +1,11 @@
+<?php if ($value !== "" || !$value): ?>
+<?php if ($value->img_url !== "" || !$value->img_url): ?>
+<img src="<?php echo $value->img_url; ?>" width="50" height="50" style="float:left; margin: 2px" />
+<?php endif; ?>
+<div style="font-size: 10px">
+    <div><strong><?php echo $value->title; ?></strong> (LEVEL <?php echo $value->level; ?>)</div>
+    <div>HP <?php echo $value->hp; ?> | AP <?php echo $value->ap; ?></div>
+    <div>POWER <?php echo $value->power; ?> | DEFENSE <?php echo $value->defense; ?> | CRITICAL <?php echo $value->critical; ?></div>
+    <div>COINS <?php echo $value->price_coins; ?> | GEMS <?php echo $value->price_gems; ?></div>
+</div>
+<?php endif; ?>

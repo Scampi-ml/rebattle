@@ -1,0 +1,10 @@
+name: Levels
+form: $/aimwie/xgame/models/level/fields.yaml
+modelClass: Aimwie\Xgame\Models\Level
+defaultRedirect: aimwie/xgame/levels
+create:
+    redirect: 'aimwie/xgame/levels/update/:id'
+    redirectClose: aimwie/xgame/levels
+update:
+    redirect: aimwie/xgame/levels
+    redirectClose: aimwie/xgame/levels

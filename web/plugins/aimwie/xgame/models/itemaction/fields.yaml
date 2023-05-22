@@ -1,0 +1,15 @@
+fields:
+    action:
+        label: Action
+        nameFrom: title
+        descriptionFrom: id
+        list: $/aimwie/xgame/models/action/columns.yaml
+        span: full
+        type: recordfinder
+    opponent_item_delete:
+        span: full
+        path: $/aimwie/xgame/controllers/items/_delete_item_action.htm
+        context:
+            - update
+            - preview
+        type: partial

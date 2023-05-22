@@ -1,0 +1,64 @@
+<div class="modal" tabindex="-1" id="modal-transfer" role="dialog" aria-labelledby="transferModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm transfer</h5>
+        <button class="btn btn-default" type="button" onclick="$('#modal-transfer').modal('hide');">
+            <span aria-hidden="true">&times;</span>
+            </button>
+      </div>
+      <div class="modal-body">
+        <div class="row text-center">
+          <h6 class="col">Receiver: </h6>
+          <h6 class="col">
+            <i class="fas fa-user-circle"></i>
+            <a class="col text-decoration-none" href="/player/aut31" target="_blank">{{ xUser }}</a>
+          </h6>
+          <div class="w-100"></div>
+          <h6 class="col">Amount: 
+            <h6 class="col">
+              {% if type == 'gems' %}
+              <i class="fas fa-gem text-danger"></i>
+            {% else %}
+              <i class="fas fa-coins text-warning"></i>
+            {% endif %}
+             {{ amount }}
+            </h6>
+          </h6>
+          <div class="w-100"></div>
+          <h6 class="col">Fee: 
+            <h6 class="col">
+              {% if type == 'gems' %}
+              <i class="fas fa-gem text-danger"></i>
+            {% else %}
+              <i class="fas fa-coins text-warning"></i>
+            {% endif %}
+             {{ fee }}
+            </h6>
+          </h6>
+          <div class="w-100"></div>
+          <hr>
+          <h5>Total: {% if type == 'gems' %}
+              <i class="fas fa-gem text-danger"></i>
+            {% else %}
+              <i class="fas fa-coins text-warning"></i>
+            {% endif %}
+            {{ amount + fee }}
+          </h5>
+          <div id="transfer-modal-alert"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" name="security_key" class="form-control" value="{{ securityKey }}">
+        <input type="hidden" name="timestamp" class="form-control" value="{{ timestamp }}">
+        
+        
+        <button type="submit" class="btn btn-primary" data-request="onSendCurrency" data-request-data="step: '2'">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#modal-transfer').modal('hide');">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$('#modal-transfer').modal('show'); 
+</script>

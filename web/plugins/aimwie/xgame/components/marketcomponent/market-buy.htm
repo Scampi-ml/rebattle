@@ -1,0 +1,149 @@
+<div class="row">
+    <div class="col-md-12">
+        {% if marketItems|length %}
+        <table class="table table-hover text-center hx">
+            <thead>
+                <tr>
+                    <td width="50px" class="text-secondary text-decoration-none">Item</td>
+                    <td class="text-secondary text-decoration-none">Title</td>
+                    <td class="text-secondary text-decoration-none">Level</td>
+                    <td class="text-secondary text-decoration-none">HP</td>
+                    <td class="text-secondary text-decoration-none">AP</td>
+                    <td class="text-secondary text-decoration-none">Power</td>
+                    <td class="text-secondary text-decoration-none">Defense</td>
+                    <td class="text-secondary text-decoration-none">Critical</td>
+                    <td class="text-secondary text-decoration-none">Price</td>
+                    <td class="text-secondary text-decoration-none text-end">Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for marketItem in marketItems %}
+                <tr>
+                    <td>
+                        <a href="#modal-item" class="item tt" title="{{ marketItem.item.title }}" @click="showItem({id: '{{ marketItem.item_id }}', mid: '{{ marketItem.id }}', mode: 'market_buy'})">
+                            <img src="{{ marketItem.item.img_url }}" alt="" class="animate__animated animate__fadeIn" />
+                        </a>
+                    </td>
+                    <td><a href="#modal-item" class="text-decoration-none text-dark"  @click="showItem({id: '{{ marketItem.item_id }}', mid: '{{ marketItem.id }}', mode: 'market_buy'})">{{ marketItem.item.title }}</a></td>
+                    <td>{{ marketItem.item.level }}</td>
+                    <td>{{ marketItem.item.hp }}</td>
+                    <td>{{ marketItem.item.ap }}</td>
+                    <td>{{ marketItem.item.power }}</td>
+                    <td>{{ marketItem.item.defense }}</td>
+                    <td>{{ marketItem.item.critical }}</td>
+                    <td>
+                        {% if marketItem.price_coins %}
+                        <i class="fa fa-coins text-warning"></i>
+                        {{ marketItem.price_coins }} 
+                        {% else %}
+                        <i class="fa fa-gem text-danger"></i>
+                        {{ marketItem.price_gems }} 
+                        {% endif %}
+                    </td>
+                    <td class="text-end">
+                        <a class="btn btn-outline-primary"
+                        href="#"
+                        data-request="onAction"
+                        data-request-data="action: 'market-buy', mid: {{ marketItem.id }}"
+                        data-request-confirm="Are you sure you want to buy this item?"
+                        >Buy</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="text-center mt-4">
+            <i class="fa fa-5x fa-spider text-dark animate__animated animate__slow animate__rubberBand"></i>
+
+        </div>
+        <h2 class="text-center text-secondary mt-4 animate__animated animate__bounce">Nothing to show</h2>
+        {% endif %}
+    </div>
+</div>
+
+{{ marketItems.render|raw }}
+
+<div class="modal" id="modal-filter" tabindex="-1" role="dialog" aria-labelledby="filterModal" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModal">
+                    Find and filter item
+                </h5>
+                <button class="btn btn-default" type="button" onclick="$('#modal-filter').modal('hide')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-hover text-center hx">
+                            <thead>
+                                <tr>
+                                    <td width="50px" class="text-secondary text-decoration-none">Item</td>
+                                    <td class="text-secondary text-decoration-none">Title</td>
+                                    <td class="text-secondary text-decoration-none">Level</td>
+                                    <td class="text-secondary text-decoration-none">HP</td>
+                                    <td class="text-secondary text-decoration-none">AP</td>
+                                    <td class="text-secondary text-decoration-none">Power</td>
+                                    <td class="text-secondary text-decoration-none">Defense</td>
+                                    <td class="text-secondary text-decoration-none">Critical</td>
+                                    <td class="text-secondary text-decoration-none">Price</td>
+                                    <td class="text-secondary text-decoration-none text-end">Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in itemList %}
+                                <tr>
+                                    <td>
+                                        <a href="#modal-item" class="item tt" title="{{ item.title }}" @click="showItem({id: '{{ item.id }}', mode: 'simple'})">
+                                            <img src="{{ item.img_url }}" alt="" class="animate__animated animate__fadeIn" />
+                                        </a>
+                                    </td>
+                                    <td><a href="#modal-item" class="text-decoration-none text-dark" @click="showItem({id: '{{ item.id }}', mode: 'simple'})">{{ item.title }}</a></td>
+                                    <td>{{ item.level }}</td>
+                                    <td>{{ item.hp }}</td>
+                                    <td>{{ item.ap }}</td>
+                                    <td>{{ item.power }}</td>
+                                    <td>{{ item.defense }}</td>
+                                    <td>{{ item.critical }}</td>
+                                    <td>
+                                        {% if item.price_coins %}
+                                        <i class="fa fa-coins text-warning"></i>
+                                        {{ item.price_coins }} 
+                                        {% else %}
+                                        <i class="fa fa-gem text-danger"></i>
+                                        {{ item.price_gems }} 
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end">
+                                        <a class="btn btn-outline-primary"
+                                        href="/market?item_id={{ item.id }}"
+                                        >Filter</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+    $(".pagination li").each(function(i) {
+        $(this).addClass("page-item");
+    });
+    $(".pagination a").each(function(i) {
+        $(this).addClass("page-link hx");
+    });
+    $(".pagination span").each(function(i) {
+        $(this).addClass("page-link disabled hx");
+    });
+</script>
+{% endput %}

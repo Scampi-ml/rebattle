@@ -1,0 +1,117 @@
+<h1 style="margin-bottom: 20px">Dashboard</h1>
+<hr>
+<div class="control-status-list" style="max-width: 500px;">
+    <ul>
+        <li>
+            <span class="status-icon"><i class="icon-info"></i></span>
+            <span class="status-text">Current version</span>
+            <span class="status-label primary"><?php echo $versionName; ?></span>
+        </li>
+
+        <li>
+            <span class="status-icon"><i class="icon-info"></i></span>
+            <span class="status-text">Version checked</span>
+            <span class="status-label link"><?php echo $versionChecked ? $versionChecked : "NEVER!"; ?></span>
+        </li>
+
+        <?php if (!$version): ?>
+        <li>
+            <span class="status-icon danger"><i class="icon-exclamation"></i></span>
+            <span class="status-text danger">Online version check</span>
+            <span class="status-label link">Failed!</span>
+        </li>
+        <?php else: ?>
+            <li>
+                <span class="status-icon"><i class="icon-info"></i></span>
+                <span class="status-text">Latest version</span>
+                <span class="status-label primary"><?php echo $version['name']; ?></span>
+            </li>
+        
+            <?php if (!isset($version['id']) || $versionId != $version['id']): ?>
+            <li>
+                <span class="status-icon warning"><i class="icon-exclamation"></i></span>
+                <span class="status-text warning">New version availble</span>
+                <span class="status-label link">Please update!</span>
+            </li>
+            <?php else: ?>
+            <li>
+                <span class="status-icon success"><i class="icon-check"></i></span>
+                <span class="status-text success">Software is up to date</span>
+                <a href="#" class="status-label link">Update</a>
+            </li>
+            <?php endif; ?>
+
+        <?php endif; ?>
+    </ul>
+</div>
+
+<hr>
+
+<div class="scoreboard">
+    <div data-control="toolbar">
+
+        <!--
+        use Aimwie\Xgame\Models\Action;
+        use Aimwie\Xgame\Models\Action;
+        use Aimwie\Xgame\Models\BankItem;
+        use Aimwie\Xgame\Models\MarketItem;
+        use Aimwie\Xgame\Models\UserItem;
+        -->
+
+        <div class="scoreboard-item title-value">
+            <h4>Item profiles</h4>
+            <p><?php echo $data['items']; ?></p>
+            <p class="description">Item variations</p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Items in game</h4>
+            <p><?php echo $data['user_items']+$data['market_items']+$data['bank_items']; ?></p>
+            <p class="description">User+Market+Bank items</p>
+        </div>
+
+        <div class="scoreboard-item control-chart" data-control="chart-pie">
+            <ul>
+                <li data-color="#95b753">User items <span><?php echo $data['user_items']; ?></span></li>
+                <li data-color="#e5a91a">Market items <span><?php echo $data['market_items']; ?></span></li>
+                <li data-color="#cc3300">Bank items <span><?php echo $data['bank_items']; ?></span></li>
+            </ul>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Levels</h4>
+            <p><?php echo $data['levels']; ?></p>
+            <p class="description"></p>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Fights</h4>
+            <p><?php echo $data['fights']; ?></p>
+            <p class="description">in archive</p>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Fight rounds</h4>
+            <p><?php echo $data['fight_rounds']; ?></p>
+            <p class="description">in archive</p>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Crafts</h4>
+            <p><?php echo $data['crafts']; ?></p>
+            <p class="description">combinations/formulas</p>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Avatars</h4>
+            <p><?php echo $data['avatars']; ?></p>
+            <p class="description">publicly available</p>
+        </div>
+
+        <div class="scoreboard-item title-value">
+            <h4>Actions</h4>
+            <p><?php echo $data['actions']; ?></p>
+            <p class="description">Variations</p>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="pt-3 animate__animated animate__fadeInDown">
+            <i class="fas fa-fist-raised"></i>
+            Avatar
+        </h3>
+    </div>
+    <div class="col-md-6 p-2 text-center text-md-end">
+        <a href="/user" class="btn btn-sm mb-2 btn-outline-secondary">
+            <i class="far fa-user-circle"></i>
+            Back to account
+        </a>
+    </div>
+</div>
+<hr>
+
+<div class="row">
+    <div class="col-md-3 bg-light border rounded pt-2">
+        {% partial 'user_side' %}
+    </div>
+    <div class="col-md-9">
+        <h5 class="animate__animated animate__fadeInDown">
+            Pick avatar ({{ avatars|length }})
+        </h5>
+
+        <div class="row">
+            {% for avatar in avatars %}
+            <div class="col-md-4">
+                <div class="bg-light border-secondary p-3 mb-2">
+                    <h6 class="text-center">{{ avatar.title }}</h6>
+                    <img src="{{ avatar.img_url}}" class="d-block float-start" alt="">
+                    <div class="hx small text-secondary">
+                        <i class="fas fa-star"></i> LEVEL {{ avatar.level }}
+                    </div>
+                    {% if avatar.coins %}
+                    <div class="hx small text-secondary">
+                        <i class="fas fa-coins"></i> COINS {{ avatar.coins }}
+                    </div>
+                    {% endif %}
+                    {% if avatar.gems %}
+                    <div class="hx small text-secondary">
+                        <i class="fas fa-gem"></i> GEMS {{ avatar.gems }}
+                    </div>
+                    {% endif %}
+                    <div class="clearfix">
+                        {% if avatar.id == user.avatar_id %}
+                        <a href="#" class="btn btn-outline-primary mt-2 disabled">Already in use</a>
+                        {% elseif avatar.level > user.level %}
+                        <a href="#" class="btn btn-outline-primary mt-2 disabled">Need Level {{ avatar.level }}!</a>
+                        {% elseif avatar.coins > user.coins %}
+                        <a href="#" class="btn btn-outline-primary mt-2 disabled">Need coins!</a>
+                        {% elseif avatar.gems > user.gems %}
+                        <a href="#" class="btn btn-outline-primary mt-2 disabled">Need gems!</a>
+                        {% else %}
+                        <a href="#" class="btn btn-outline-primary mt-2" data-request="onAction" data-request-data="avatar_id: {{ avatar.id }}" data-request-data="Are you sure you want to change avatar?">Use this avatar</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

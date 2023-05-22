@@ -1,0 +1,35 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    title:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true
+    description:
+        label: Description
+        type: text
+        searchable: true
+        sortable: true
+    type:
+        label: Type
+        type: text
+        sortable: true
+    ap:
+        label: AP
+        type: number
+        sortable: true
+    amount:
+        label: Amount
+        type: number
+        sortable: true
+    created_at:
+        label: Created
+        type: datetime
+        sortable: true
+    updated_at:
+        label: Updated
+        type: datetime
+        sortable: true

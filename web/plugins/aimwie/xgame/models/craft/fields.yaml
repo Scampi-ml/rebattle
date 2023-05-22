@@ -1,0 +1,44 @@
+fields:
+    item:
+        label: 'Item to craft'
+        nameFrom: title
+        descriptionFrom: type_id
+        list: $/aimwie/xgame/models/item/columns.yaml
+        span: auto
+        required: 1
+        type: recordfinder
+        comment: Item
+    level:
+        label: Level
+        span: auto
+        default: '0'
+        required: 1
+        type: number
+        comment: 'minimal level, to craft this item'
+    coins:
+        label: Coins
+        span: auto
+        type: number
+        comment: 'Coins needed to craft this item'
+    gems:
+        label: Gems
+        span: auto
+        default: '0'
+        type: number
+        comment: 'Gems required to craft item'
+    success_rate:
+        label: 'Success rate'
+        span: auto
+        default: '100'
+        type: number
+        comment: '0-100% success rate. On unsuccessful craft case, player will lose his material items.'
+tabs:
+    fields:
+        items:
+            path: $/aimwie/xgame/controllers/crafts/_items.htm
+            context:
+                - update
+                - preview
+            type: partial
+            tab: Items
+            span: full

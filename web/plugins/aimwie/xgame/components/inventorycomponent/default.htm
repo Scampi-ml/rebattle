@@ -1,0 +1,54 @@
+<h3 class="pt-3 animate__animated animate__fadeInDown">
+    <i class="fas fa-shopping-bag"></i>
+    Inventory
+</h3>
+<hr>
+
+<div class="row">
+    <div class="col-md-3 bg-light border rounded pt-2">
+        {% partial 'user_side' %}
+    </div>
+    <div class="col-md-6">
+        <h5 class="animate__animated animate__fadeInDown">
+            Inventory ({{ user.storage }}/{{ user.storage_max }})
+        </h5>
+
+        <div class="container-inventory" style="width: 432px;">
+            {% for userItem in userItems %}
+            <a href="#modal-item" class="item tt" title="{{ userItem.item.title }}" @click="showItem({id: '{{ userItem.item_id }}', uid: '{{ userItem.id }}', mode: 'inventory_storage'})">
+                <img src="{{ userItem.item.img_url }}" alt="" class="animate__animated animate__fadeIn" />
+            </a>
+            {% endfor %}
+            {% set emptySlots = (user.storage_max - user.storage) %}
+            {% if emptySlots > 0 %}
+            {% for i in 1..emptySlots %}
+            <span class="item">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-3">
+        <h5 class="animate__animated animate__fadeInDown">
+            Bag
+        </h5>
+        <div class="pb-4 mb-2 text-center text-secondary border border-secondary rounded">
+            <div class="player-bag-container mt-5">
+                {% if user.items_cache.bag %}
+                <a href="#modal-item" class="item-lg tt" title="{{ user.items_cache.bag.item.title }}" @click="showItem({id: '{{ user.items_cache.bag.item_id }}', uid: '{{ user.items_cache.bag.id }}', mode: 'inventory_user'})">
+                    <img src="{{ user.items_cache.bag.item.img_url }}" title="{{ user.items_cache.bag.item.title  }}" />
+                </a>
+                <h5>{{ user.items_cache.bag.item.title }}</h5>
+                <p class="small">Your storage capacity is increased.</p>
+                {% else %}
+                <span class="item-lg wear bag">
+                    <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+                </span>
+                <h5>Nothing</h5>
+                <p class="small"><strong>Use bag</strong> to increase your storage capacity.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

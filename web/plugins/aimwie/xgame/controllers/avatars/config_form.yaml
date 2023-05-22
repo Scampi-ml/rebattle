@@ -1,0 +1,10 @@
+name: Avatars
+form: $/aimwie/xgame/models/avatar/fields.yaml
+modelClass: Aimwie\Xgame\Models\Avatar
+defaultRedirect: aimwie/xgame/avatars
+create:
+    redirect: 'aimwie/xgame/avatars/update/:id'
+    redirectClose: aimwie/xgame/avatars
+update:
+    redirect: aimwie/xgame/avatars
+    redirectClose: aimwie/xgame/avatars

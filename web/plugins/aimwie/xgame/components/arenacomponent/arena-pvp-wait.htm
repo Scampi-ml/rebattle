@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="pt-3 animate__animated animate__fadeInDown">
+            <i class="fas fa-fist-raised"></i>
+            Fight arena
+        </h3>
+    </div>
+    <div class="col-md-6 p-2 text-center text-md-end">
+        <a href="#" class="btn btn-sm mb-2 btn-outline-primary" data-request="onCancelPvp">
+            <i class="fas fa-hat-cowboy"></i>
+            Cancel PVP
+        </a>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 bg-light border rounded pt-2">
+        {% partial 'user_side' %}
+    </div>
+    <div class="col-sm-6 col-md-8 col-lg-9">
+        <h5 class="animate__animated animate__fadeInDown">
+            <i class="fas fa-hat-cowboy"></i>
+            Player vs Player (PVP) game
+        </h5>
+        <div class="text-center">
+            <i class="fas fa-hat-cowboy fa-5x text-primary animate__animated animate__jello animate__infinite mt-5 mb-3"></i>
+            <h5 class="animate__animated animate__pulse animate__infinite">Waiting for opponent...</h5>
+            <p>Game will start once other player will choose to fight with you.</p>
+            <a href="#" class="btn btn-lg mb-4 mt-4 btn-outline-primary" data-request="onCancelPvp">
+                <i class="fas fa-hat-cowboy"></i>
+                Cancel PVP
+            </a>
+        </div>
+    </div>
+</div>
+{% put scripts %}
+<script>
+    setInterval(function() {
+        $.request('onCheckPvp', {
+            success: function(data) {
+                if (typeof(data.fight_id) !== "undefined" && data.fight_id !== null) {
+                    window.location.replace("/fight");
+                }
+            }
+        });
+    }, 2500);
+</script>
+{% endput %}

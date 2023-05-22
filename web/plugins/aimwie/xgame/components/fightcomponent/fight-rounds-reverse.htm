@@ -1,0 +1,121 @@
+<div class="bg-light">
+    <hr>
+    <h3 class="text-center">
+        <i class="fas fa-concierge-bell text-secondary"></i>
+        Rounds
+    </h3>
+    <table class="table table-hover text-center hx">
+        <thead>
+            <tr>
+                <td width="100px">Round</td>
+                <td class="text-end">
+                    DAMAGE
+                </td>
+                <td class="d-none d-md-table-cell" width="150px">
+                    <i class="fas fa-heart text-danger"></i>
+                </td>
+                <td width="30px">
+                    <i class="fas fa-theater-masks text-primary"></i>
+                </td>
+                <td width="18px">
+                    <i class="fas fa-opponent-shield text-secondary"></i>
+                </td>
+                <td width="30px">
+                    <i class="fas fa-fist-raised text-danger"></i>
+                </td>
+                <td width="30px">
+                    <i class="fas fa-fist-raised text-danger"></i>
+                </td>
+                <td width="18px">
+                    <i class="fas fa-opponent-shield text-secondary"></i>
+                </td>
+                <td width="30px">
+                    <i class="fas fa-theater-masks text-primary"></i>
+                </td>
+                <td class="d-none d-md-table-cell" width="150px">
+                    <i class="fas fa-heart text-danger"></i>
+                </td>
+                <td class="text-start">
+                    DAMAGE
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fightRound in fightRounds %}
+            <tr class="text-center">
+                <td>#{{ fightRound.round }}</td>
+                {% if fightRound.user_hit %}
+                <td class="text-danger text-end">
+                    {% if fightRound.user_hit_critical %}
+                    <span class="text-danger bg-info tt" title="Critical damage">
+                        <i class="fas fa-fist-raised m-1"></i>
+                    </span>
+                    {% endif %}
+                    -{{ fightRound.user_hit }}                        
+                </td>
+                {% else %}
+                <td class="text-secondary text-end">Miss</td>
+                {% endif %}                
+                <td class="d-none d-md-table-cell">
+                    <div class="progress-text">HP {{ fightRound.opponent_hp }}/{{ opponent.hp_max }}</div>
+                    <div class="progress bg-secondary mb-1" title="Health points">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ ((fightRound.opponent_hp/opponent.hp_max)*100) }}%" aria-valuenow="{{ ((fightRound.opponent_hp/opponent.hp_max)*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </td>
+                <td>
+                    {% if fightRound.opponentAction %}
+                    <span class="badge-action tt" title="[{{ fightRound.opponentAction.ap }}AP] {{ fightRound.opponentAction.title }} - {{ fightRound.opponentAction.description }}">
+                        <i class="{{ fightRound.opponentAction.icon }}"></i>
+                    </span>
+                    {% else %}
+                    <span class="badge-action border-secondary tt" title="No action used">
+                        
+                    </span>
+                    {% endif %}
+                </td>
+                <td>
+                    <img src="/themes/x/assets/img/opponent_block_{{ fightRound.opponent_block_id }}.svg" height="30px" alt="Block: Option {{ fightRound.opponent_block_id }}">
+                </td>
+                <td>
+                    <img src="/themes/x/assets/img/opponent_attack_{{ fightRound.opponent_attack_id }}.svg" height="30px" alt="Attack: Option {{ fightRound.opponent_attack_id }}">
+                </td>
+                <td>
+                    <img src="/themes/x/assets/img/user_attack_{{ fightRound.user_attack_id }}.svg" height="30px" alt="Attack: Option {{ fightRound.user_attack_id }}">
+                <td>
+                    <img src="/themes/x/assets/img/user_block_{{ fightRound.user_block_id }}.svg" height="30px" alt="Block: Option {{ fightRound.user_block_id }}">
+                </td>
+                <td>
+                    {% if fightRound.userAction %}
+                    <span class="badge-action tt" title="[{{ fightRound.userAction.ap }}AP] {{ fightRound.userAction.title }} - {{ fightRound.userAction.description }}">
+                        <i class="{{ fightRound.userAction.icon }}"></i>
+                    </span>
+                    {% else %}
+                    <span class="badge-action border-secondary tt" title="No action used">
+                        
+                    </span>
+                    {% endif %}
+                </td>
+                <td class="d-none d-md-table-cell">
+                    <div class="progress-text">HP {{ fightRound.user_hp }}/{{ user.hp_max }}</div>
+                    <div class="progress bg-secondary mb-1" title="Health points">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ ((fightRound.user_hp/user.hp_max)*100) }}%" aria-valuenow="{{ ((fightRound.opponent_hp/opponent.hp_max)*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </td>
+                {% if fightRound.opponent_hit %}
+                <td class="text-start text-danger">
+                    -{{ fightRound.opponent_hit }}
+                    {% if fightRound.opponent_hit_critical %}
+                    <span class="text-danger bg-info tt" title="Critical damage">
+                        <i class="fas fa-fist-raised m-1"></i>
+                    </span>
+                    {% endif %}
+                </td>
+                {% else %}
+                <td class="text-start text-secondary">Miss</td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

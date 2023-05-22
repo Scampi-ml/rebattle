@@ -1,0 +1,102 @@
+<h3 class="pt-3 animate__animated animate__fadeInDown">
+    <i class="fas fa-mortar-pestle"></i>
+    Craft
+</h3>
+<hr>
+
+<div class="row">
+    <div class="col-md-6">
+        <h5 class="animate__animated animate__fadeInDown">Inventory ({{ user.storage }}/{{ user.storage_max }})</h5>
+
+        <div class="container-inventory" style="width: 432px;">
+            {% for userItem in userItems %}
+            <a href="#modal-item" class="item tt {% if selected[userItem.id] %} selected{% endif %}" title="{{ userItem.item.title }}" @click="showItem({id: '{{ userItem.item_id }}', uid: '{{ userItem.id }}', mode: 'craft_inventory'})">
+                <img src="{{ userItem.item.img_url }}" alt="" class="animate__animated animate__{% if selected[userItem.id] %}pulse animate__infinite{% else %}fadeIn{% endif %}" />
+            </a>
+            {% endfor %}
+            {% set emptySlots = (user.storage_max - user.storage) %}
+            {% if emptySlots > 0 %}
+            {% for i in 1..emptySlots %}
+            <span class="item">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-3">
+        <h5 class="animate__animated animate__fadeInDown">Selected items</h5>
+        <div class="container-inventory" style="width: 216px;">
+            {% for craftItem in craftItems %}
+            <a href="#modal-item" class="item tt" title="{{ craftItem.item.title }}" @click="showItem({id: '{{ craftItem.item_id }}', uid: '{{ craftItem.id }}', mode: 'craft_inventory'})">
+                <img src="{{ craftItem.item.img_url }}" alt="" class="animate__animated animate__fadeIn" />
+            </a>
+            {% endfor %}
+            {% set emptySlots = (8 - craftItems|length) %}
+            {% if emptySlots > 0 %}
+            {% for i in 1..emptySlots %}
+            <span class="item">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        {% if craftItems|length %}
+        <a class="btn btn-secondary mt-2 mb-2 tt" style="width: 216px;" title="Remove all selected items" data-request="onAction" data-request-data="action: 'craft-unselect-all'">
+            <i class="fa fa-times"></i>
+            Remove all
+        </a>
+        {% endif %}
+    </div>
+    <div class="col-md-3">
+        <h5 class="animate__animated animate__fadeInDown">Result</h5>
+        {% if craftItems|length < 1%}
+        <div class="pb-4 mb-2 text-center text-secondary border border-secondary rounded">
+            <i class="fas fa-mouse-pointer m-4" style="font-size: 70px;"></i>
+            <h5>Select</h5>
+            <p class="small">Select items from inventory<br> to craft a new item.</p>
+        </div>
+        {% else %}
+            {% if craft %}
+            <div class="pb-4 pt-3 mb-2 text-center text-secondary border border-secondary rounded">
+                <a href="#" class="item-lg" @click="showItem({id: '{{ craft.item_id }}', mode: null})">
+                    <img src="{{ craft.item.img_url }}" width="100" height="100" alt="">
+                </a>
+                <h6 class="animate__animated animate__tada">{{ craft.item.title }}</h6>
+                <div class="p-2">
+                    <div class="progress">
+                        <div class="progress-bar bg-primary animate__animated animate__fadeInLeft" role="progressbar" style="width: {{ ((craft.success_rate/100)*100)|round }}%"></div>
+                    </div>
+                </div>
+                <h5 class="animate__animated animate__fadeInDown mb-1">{{ craft.success_rate }}% chance</h5>
+                <p class="small p-2 mb-0">
+                    <i class="fas fa-info-circle"></i>
+                    If craft has less than 100% chance,
+                    you might lose materials,
+                    without getting result item.
+                </p>
+                {% if craft.level > user.level %}
+                <div class="text-center text-danger">To craft this item<br> you must reach level <i class="fas fa-star"></i> {{ craft.level }}</div>
+                {% endif %}
+            </div>
+            <a class="btn d-block btn-lg btn-primary btn-rx" href="#" data-request="onAction" data-request-data="action: 'craft-try'">
+                <i class="fas fa-mortar-pestle"></i>
+                Try to Craft
+            </a>
+                {% if craft.coins or craft.gems %}
+                    <div class="text-center mt-2">
+                        PAY:
+                        {% if craft.coins %}<i class="fas fa-coins"></i> {{ craft.coins }}{% endif %}
+                        {% if craft.gems %}<i class="fas fa-gem"></i> {{ craft.gems }}{% endif %}
+                    </div>
+                {% endif %}
+            {% else %}
+            <div class="pb-4 mb-2 text-center text-secondary border border-secondary rounded">
+                <i class="fas fa-wind m-4" style="font-size: 70px;"></i>
+                <h5>Nothing</h5>
+                <p class="small">Items that you selected,<br> did not create any result,<br> please try another combination.</p>
+            </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>

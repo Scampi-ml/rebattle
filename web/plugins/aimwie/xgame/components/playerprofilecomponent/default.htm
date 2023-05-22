@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="pt-3 animate__animated animate__fadeInDown">
+            <i class="fas fa-user-circle"></i>
+            Player <span class="text-secondary small">{{ opponent.player_name }}</span>
+        </h3>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-md-3 bg-light border rounded pt-2" style="opacity: 0.5;">
+        {% partial 'user_side' %}
+    </div>
+    <div class="col-md-3 bg-light border rounded pt-2" style="margin-left: 10px">
+        {% partial 'opponent_side' %}
+    </div>
+    <div class="col-md-5">
+        <h5 class="animate__animated animate__fadeInDown">
+            {{ opponent.player_name }} inventory ({{ user.storage }}/{{ user.storage_max }})
+        </h5>
+        
+        <div class="container-inventory" style="width: 432px;">
+            {% for userItem in userItems %}
+            <a href="#modal-item" class="item tt" title="{{ userItem.item.title }}" @click="showItem({id: '{{ userItem.item_id }}', mode: 'inventory_storage'})">
+                <img src="{{ userItem.item.img_url }}" alt="" class="animate__animated animate__fadeIn" />
+            </a>
+            {% endfor %}
+            {% set emptySlots = (opponent.storage_max - opponent.storage) %}
+            {% if emptySlots > 0 %}
+            {% for i in 1..emptySlots %}
+            <span class="item">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>

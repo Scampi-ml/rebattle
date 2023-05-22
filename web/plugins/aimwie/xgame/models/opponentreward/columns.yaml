@@ -1,0 +1,32 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+        width: 100px
+    reward_type:
+        label: Type
+        type: text
+        sortable: true
+    item:
+        label: Item
+        type: partial
+    quantity:
+        label: Quantity
+        type: number
+        sortable: true
+    success_rate:
+        label: 'Success rate'
+        type: number
+        sortable: true
+    success_rate_position:
+        label: Chance
+        type: partial
+    created_at:
+        label: Created
+        type: datetime
+        sortable: true
+    updated_at:
+        label: Updated
+        type: datetime
+        sortable: true

@@ -1,0 +1,166 @@
+<h4>{{ user.player_name }}</h4>
+<div class="player-container">
+    <div class="player-avater-container">
+        <img src="{{ user.img_url }}" class="player-avatar" alt="">
+    </div>
+    <div class="player-helmet-container">
+        {% if user.items_cache.helmet %}
+        <a href="#modal-item" class="item tt" title="{{ user.items_cache.helmet.item.title }}" @click="showItem({id: '{{ user.items_cache.helmet.item_id }}', uid: '{{ user.items_cache.helmet.id }}', mode: 'inventory_user'})">
+            <img src="{{ user.items_cache.helmet.item.img_url }}" title="{{ user.items_cache.helmet.item.title  }}" />
+        </a>
+        {% else %}
+        <span class="item wear helmet">
+            <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+        </span>
+        {% endif %}
+    </div>
+    <div class="player-armor-container">
+        {% if user.items_cache.armor %}
+        <a href="#modal-item" class="item tt" title="{{ user.items_cache.armor.item.title }}" @click="showItem({id: '{{ user.items_cache.armor.item_id }}', uid: '{{ user.items_cache.armor.id }}', mode: 'inventory_user'})">
+            <img src="{{ user.items_cache.armor.item.img_url }}" title="{{ user.items_cache.armor.item.title  }}" />
+        </a>
+        {% else %}
+        <span class="item wear armor">
+            <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+        </span>
+        {% endif %}            
+    </div>
+    <div class="player-pants-container">
+        {% if user.items_cache.pants %}
+        <a href="#modal-item" class="item tt" title="{{ user.items_cache.pants.item.title }}" @click="showItem({id: '{{ user.items_cache.pants.item_id }}', uid: '{{ user.items_cache.pants.id }}', mode: 'inventory_user'})">
+            <img src="{{ user.items_cache.pants.item.img_url }}" title="{{ user.items_cache.pants.item.title  }}" />
+        </a>
+        {% else %}
+        <span class="item wear pants">
+            <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+        </span>
+        {% endif %}
+    </div>
+    <div class="player-bottom-container">
+        <div class="player-weapon-container">
+            {% if user.items_cache.weapon %}
+            <a href="#modal-item" class="item tt" title="{{ user.items_cache.weapon.item.title }}" @click="showItem({id: '{{ user.items_cache.weapon.item_id }}', uid: '{{ user.items_cache.weapon.id }}', mode: 'inventory_user'})">
+                <img src="{{ user.items_cache.weapon.item.img_url }}" title="{{ user.items_cache.weapon.item.title  }}" />
+            </a>
+            {% else %}
+            <span class="item wear weapon">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endif %}     
+        </div>
+        <div class="player-shield-container">
+            {% if user.items_cache.shield %}
+            <a href="#modal-item" class="item tt" title="{{ user.items_cache.shield.item.title }}" @click="showItem({id: '{{ user.items_cache.shield.item_id }}', uid: '{{ user.items_cache.shield.id }}', mode: 'inventory_user'})">
+                <img src="{{ user.items_cache.shield.item.img_url }}" title="{{ user.items_cache.shield.item.title  }}" />
+            </a>
+            {% else %}
+            <span class="item wear shield">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endif %}          
+        </div>
+        <div class="player-boots-container">
+            {% if user.items_cache.boots %}
+            <a href="#modal-item" class="item tt" title="{{ user.items_cache.boots.item.title }}" @click="showItem({id: '{{ user.items_cache.boots.item_id }}', uid: '{{ user.items_cache.boots.id }}', mode: 'inventory_user'})">
+                <img src="{{ user.items_cache.boots.item.img_url }}" title="{{ user.items_cache.boots.item.title  }}" />
+            </a>
+            {% else %}
+            <span class="item wear boots">
+                <span class="d-inline-block" style="width: 50px; height: 50px"></span>
+            </span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="player-stats clear-both">
+        {% for actionId, action in user.actions_cache %}
+        <span class="badge-action tt" title="[{{ action.ap }}AP] {{ action.title }} - {{ action.description }}">
+            <i class="{{ action.icon }}"></i>
+        </span>
+        {% endfor %}
+        <div class="progress-text" id="user_side_hp">
+            HP {{ user.hp }}/{{ user.hp_max }}
+            {% if user.hp_ts %}
+            <i class="fas fa-history"></i> <span id="renew_in_hp">{{ user.hp_ts-time }}</span> sec
+            {% endif %}
+        </div>
+        <div class="progress bg-secondary mb-1" title="Health points">
+            <div class="progress-bar bg-danger" id="user_side_hp_bar" role="progressbar" style="width: {{ user.hp_max ? ((user.hp/user.hp_max)*100) : 0 }}%"></div>
+        </div>
+        {% if user.hp_ts %}
+        <div class="text-center mb-2" id="user_side_hp_btn">
+            <a href="/user" class="btn btn-sm btn-outline-danger w-100">
+                Renew <i class="fas fa-heart"></i> now
+            </a>
+        </div>
+        {% put scripts %}
+        <script>
+            var renewHpInterval = setInterval(function() {
+                var timeX = parseInt($('#renew_in_hp').text());
+                if (timeX > 0) {
+                    $('#renew_in_hp').text(timeX-1);
+                } else {
+                    $('#user_side_hp').text('HP {{ user.hp_max }}/{{ user.hp_max }}');
+                    $('#user_side_hp_bar').css('width', '100%');
+                    $('#user_side_hp_btn').slideUp();
+                    clearInterval(renewHpInterval);
+                }
+            }, 1000);
+        </script>
+        {% endput %}
+        {% endif %}
+        <div class="progress-text" id="user_side_ap">
+            AP {{ user.ap }}/{{ user.ap_max }}
+            {% if user.ap_ts %}
+            <i class="fas fa-history"></i> <span id="renew_in_ap">{{ user.ap_ts-time }}</span> sec
+            {% endif %}
+        </div>
+        <div class="progress bg-secondary mb-1" title="Action points">
+            <div class="progress-bar hx" role="progressbar" id="user_side_ap_bar" style="width: {{ user.ap_max ? ((user.ap/user.ap_max)*100) : 0 }}%"></div>
+        </div>
+        {% if user.ap_ts %}
+        <div class="text-center mb-2" id="user_side_ap_btn">
+            <a href="/user" class="btn btn-sm btn-outline-primary w-100">
+                Renew <i class="fas fa-theater-masks"></i> now
+            </a>
+        </div>
+        {% put scripts %}
+        <script>
+            var renewApInterval = setInterval(function() {
+                var timeX = parseInt($('#renew_in_ap').text());
+                if (timeX > 0) {
+                    $('#renew_in_ap').text(timeX-1);
+                } else {
+                    $('#user_side_ap').text('AP {{ user.ap_max }}/{{ user.ap_max }}');
+                    $('#user_side_ap_bar').css('width', '100%');
+                    $('#user_side_ap_btn').slideUp();
+                    clearInterval(renewApInterval);
+                }
+            }, 1000);
+        </script>
+        {% endput %}
+        {% endif %}
+        <div class="progress-text">XP {{ user.xp }}/{{ user.xp_max }}</div>
+        <div class="progress bg-secondary mb-1" title="Experience points till next level">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ user.xp_max ? ((user.xp/user.xp_max)*100) : 0 }}%"></div>
+        </div>
+        <div class="progress-text">CRITICAL {{ user.critical }}/100%</div>
+        <div class="progress bg-secondary mb-2" title="Critical hit percentage possibility">
+            <div class="progress-bar bg-info" role="progressbar" style="width: {{ ((user.critical/100)*100) }}%"></div>
+        </div>
+
+        <div class=" text-secondary p-1 hx rounded-pill text-center mb-1">
+            <i class="fas fa-star "></i> LEVEL {{ user.level }}
+        </div>
+        <div class=" text-secondary p-1 hx rounded-pill text-center mb-1">
+            <i class="fas fa-bolt "></i> POWER {{ user.power }}
+        </div>
+        <div class=" text-secondary p-1 hx rounded-pill text-center mb-1">
+            <i class="fas fa-shield-alt "></i> DEFENSE {{ user.defense }} 
+        </div>
+        <div class=" text-secondary p-1 hx rounded-pill text-center mb-1">
+            <span class="tt" title="Win"><i class="fas fa-medal"></i> {{ user.win }}</span>
+            <span class="tt" style="color: #ccc;" title="Standoff"><i class="fas fa-balance-scale"></i> {{ user.standoff }}</span>
+            <span class="tt" title="Lose"><i class="far fa-dizzy"></i> {{ user.lose }}</span>
+        </div>
+    </div>
+</div>

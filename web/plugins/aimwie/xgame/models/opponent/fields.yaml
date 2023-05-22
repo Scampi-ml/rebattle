@@ -1,0 +1,108 @@
+fields:
+    player_name:
+        label: Title
+        span: auto
+        required: 1
+        type: text
+        comment: 'Title of opponent'
+    is_public:
+        label: Public
+        span: auto
+        default: 1
+        type: switch
+        comment: 'Is publicly accesable as opponent'
+    js_field:
+        span: full
+        path: $/aimwie/xgame/controllers/opponents/_js_field.htm
+        type: partial
+tabs:
+    fields:
+        level:
+            label: Level
+            span: auto
+            default: '1'
+            required: 1
+            type: text
+            comment: 'Opponent level'
+            tab: Stats
+        min_level:
+            label: 'Minimal level'
+            span: auto
+            default: '0'
+            required: 1
+            type: number
+            comment: 'Players minimal level to fight with opponent'
+            tab: Stats
+        hp_max:
+            label: HP
+            span: auto
+            default: '10'
+            required: 1
+            type: number
+            comment: 'Health points (adding items will be updated automaticly)'
+            tab: Stats
+        ap_max:
+            label: AP
+            span: auto
+            default: '10'
+            required: 1
+            type: number
+            comment: 'Action points (adding items will be updated automaticly)'
+            tab: Stats
+        power:
+            label: Power
+            span: auto
+            default: '3'
+            required: 1
+            type: number
+            comment: 'Attack points (adding items will be updated automaticly)'
+            tab: Stats
+        defense:
+            label: Defense
+            span: auto
+            default: '0'
+            required: 1
+            type: number
+            comment: 'Defense points (adding items will be updated automaticly)'
+            tab: Stats
+        critical:
+            label: Critical
+            span: auto
+            default: '0'
+            required: 1
+            type: number
+            comment: 'Critical hit procentage (adding items will be updated automaticly)'
+            tab: Stats
+        items:
+            path: $/aimwie/xgame/controllers/opponents/_items.htm
+            context:
+                - update
+                - preview
+            type: partial
+            tab: Items
+            span: full
+        reward_mode:
+            label: 'Reward mode'
+            options:
+                win: WIN
+                standoff: Standoff
+            showSearch: true
+            span: auto
+            type: dropdown
+            comment: 'When user can get reward'
+            tab: Rewards
+        reward_size:
+            label: 'Reward size'
+            span: auto
+            default: '1'
+            type: number
+            comment: 'How many rewards will be picked. Each pick all items ar select, even ones that are already picked. Size can be larger than reward list.'
+            tab: Rewards
+        rewards:
+            path: $/aimwie/xgame/controllers/opponents/_rewards.htm
+            context:
+                - update
+                - preview
+            type: partial
+            tab: Rewards
+            span: full

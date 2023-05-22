@@ -1,0 +1,13 @@
+columns:
+    id:
+        label: id
+        type: number
+    item:
+        label: Item
+        type: partial
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

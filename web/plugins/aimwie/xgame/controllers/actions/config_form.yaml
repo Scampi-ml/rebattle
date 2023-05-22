@@ -1,0 +1,10 @@
+name: Actions
+form: $/aimwie/xgame/models/action/fields.yaml
+modelClass: Aimwie\Xgame\Models\Action
+defaultRedirect: aimwie/xgame/actions
+create:
+    redirect: 'aimwie/xgame/actions/update/:id'
+    redirectClose: aimwie/xgame/actions
+update:
+    redirect: aimwie/xgame/actions
+    redirectClose: aimwie/xgame/actions

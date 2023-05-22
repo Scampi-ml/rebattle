@@ -1,0 +1,16 @@
+columns:
+    id:
+        label: ID/LEVEL
+        type: number
+        searchable: true
+        sortable: true
+        width: 100px
+    xp:
+        label: XP
+        type: number
+        sortable: true
+        width: 100px
+    points:
+        label: Points
+        type: number
+        sortable: true

@@ -1,0 +1,149 @@
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="pt-3 animate__animated animate__fadeInDown">
+            <i class="fas fa-fist-raised"></i>
+            Fight <small class="text-secondary">{% if fightEnded %}ended{% else %}round #{{ fight.round }}{% endif %}</small>
+        </h3>
+    </div>
+    <div class="col-md-6 p-2 text-center text-md-end">
+        {% if fightEnded %}
+        <a href="/arena" class="btn btn-sm mb-2 btn-outline-secondary">
+            <i class="fas fa-fist-raised"></i>
+            To arena
+        </a>
+        {% else %}
+        <a href="#" class="btn btn-sm mb-2 btn-outline-secondary" data-request="onLeave" data-request-confirm="Are you sure you want to leave this fight? It will be counted as LOSE!">
+            <i class="far fa-flag"></i>
+            Surrender
+        </a>
+        {% endif %}
+    </div>
+</div>
+<hr>
+
+
+<form data-request="onFight">
+    <div class="row">
+        <div class="col-md-4 col-lg-3 bg-light border rounded pt-2">
+            {% if roundData %}
+                {% if roundData.opponentHit %}
+                <div class="hit-container user-hit-container d-none">
+                    <div class="user-hit bg-{{ roundData.opponentCriticalOn ? 'info' : 'danger' }}" style="width:200px; height:200px; padding-top: 80px; border-radius: 200px; text-align: center;">
+                        <div class="h1 text-{{ roundData.opponentCriticalOn ? 'danger' : 'white' }} text-center">-{{ roundData.opponentHit }}</div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="hit-container user-hit-container d-none">
+                    <div class="user-hit bg-success" style="width:200px; height:200px; padding-top: 80px; border-radius: 200px; text-align: center;">
+                        <div class="h1 text-white text-center">Miss</div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endif %}
+            {% partial 'user_side' %}
+        </div>
+        <div class="col-md-4 col-lg-6">
+            {% if fightEnded %}
+            {% partial '@fight-resume' %}
+            {% elseif fightPvpWait %}
+            {% partial '@fight-pvp-wait' %}
+            {% else %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="bg-light rounded p-2 text-center">
+                        <h4>
+                            <i class="fas fa-user-shield text-secondary"></i>
+                            Block
+                        </h4>
+                        <input type="hidden" name="userBlockId" v-model="userBlockId" value="">
+                        <a href="#" v-bind:class="'btn btn-lg d-block btn-outline-secondary mb-2'+(userBlockId=='1' ? ' active animate__animated animate__pulse' : '')" @click="userBlockId='1'">
+                            High
+                        </a>
+                        <a href="#" v-bind:class="'btn btn-lg d-block btn-outline-secondary mb-2'+(userBlockId=='2' ? ' active animate__animated animate__pulse' : '')" @click="userBlockId='2'">
+                            Middle
+                        </a>
+                        <a href="#" v-bind:class="'btn btn-lg d-block btn-outline-secondary mb-2'+(userBlockId=='3' ? ' active animate__animated animate__pulse' : '')" @click="userBlockId='3'">
+                            Low
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-light rounded p-2 text-center">
+                        <h4>
+                            <i class="fas fa-fist-raised text-danger"></i>
+                            Attack
+                        </h4>
+                        <input type="hidden" name="userAttackId" v-model="userAttackId" value="">
+                        <a href="#" v-bind:class="'btn btn-lg d-block btn-outline-danger mb-2'+(userAttackId=='1' ? ' active animate__animated animate__pulse' : '')" @click="userAttackId='1'">
+                            High
+                        </a>
+                        <a href="#" v-bind:class="'btn btn-lg d-block btn-outline-danger mb-2'+(userAttackId=='2' ? ' active animate__animated animate__pulse' : '')" @click="userAttackId='2'">
+                            Middle
+                        </a>
+                        <a href="#" v-bind:class="'btn btn-lg d-block btn-outline-danger mb-2'+(userAttackId=='3' ? ' active animate__animated animate__pulse' : '')" @click="userAttackId='3'">
+                            Low
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="text-center m-3">
+                <hr>
+                <h4>
+                    <i class="fas fa-theater-masks text-primary"></i>
+                    Action
+                </h4>
+                <input type="hidden" name="userActionId" v-model="userActionId" value="">
+                {% if user.actions_cache|length %}
+                {% for actionId, action in user.actions_cache %}
+                <button type="button" v-bind:class="'btn btn-action tt btn-outline-primary '+(userActionId == '{{ action.id }}' ? 'active animate__animated animate__flip' : '')+(user.ap < {{ action.ap }} ? ' disabled' : '')" @click="selectAction('{{ action.id }}')" title="[{{ action.ap }}AP] {{ action.title }} - {{ action.description }}">
+                    <i class="{{ action.icon }}"></i>
+                </button>
+                {% endfor %}
+                {% else %}
+                <p class="text-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    To use actions, you must wear item that has action ability.
+                </p>
+                {% endif %}
+                <div v-if="userActionId !== null">
+                    <button type="button" class="btn btn-sm btn-secondary mt-3 animate__animated animate__fadeInDown" @click="userActionId = null">
+                        <i class="fas fa-times"></i>
+                        cancel action
+                    </button>
+                </div>
+                <hr>
+                <button v-bind:class="'btn btn-lg btn-primary'+(userAttackId && userBlockId ? ' btn-rx animate__animated animate__rubberBand' : ' disabled')">
+                    <i class="fas fa-fire-alt"></i>
+                    Fight
+                </button>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-md-4 col-lg-3 bg-light border rounded pt-2">
+            {% if roundData %}
+                {% if roundData.userHit %}
+                <div class="hit-container user-hit-container d-none">
+                    <div class="user-hit bg-{{ roundData.userCriticalOn ? 'info' : 'danger' }}" style="width:200px; height:200px; padding-top: 80px; border-radius: 200px; text-align: center;">
+                        <div class="h1 text-{{ roundData.userCriticalOn ? 'danger' : 'white' }} text-center">-{{ roundData.userHit }}</div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="hit-container user-hit-container d-none">
+                    <div class="user-hit bg-secondary" style="width:200px; height:200px; padding-top: 80px; border-radius: 200px; text-align: center;">
+                        <div class="h1 text-white text-center">Miss</div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endif %}
+            {% partial 'opponent_side' %}
+        </div>
+    </div>
+</form>
+{% if fightRounds|length %}
+    {% if fight.user_id != user.id %}
+    {% partial '@fight-rounds-reverse' %}
+    {% else %}
+    {% partial '@fight-rounds' %}
+    {% endif %}
+{% endif %}

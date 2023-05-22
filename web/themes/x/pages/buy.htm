@@ -1,0 +1,12 @@
+title = "Buy"
+url = "/buy"
+layout = "default"
+is_hidden = 0
+
+==
+{% if gameDemo %}
+<script src="https://gumroad.com/js/gumroad-embed.js"></script>
+<div class="gumroad-product-embed"><a href="https://gumroad.com/l/JzAAC">Loading...</a></div>
+{% else %}
+<script>document.location="/";</script>
+{% endif %}

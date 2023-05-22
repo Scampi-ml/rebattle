@@ -1,0 +1,10 @@
+name: Opponents
+form: $/aimwie/xgame/models/opponent/fields.yaml
+modelClass: Aimwie\Xgame\Models\Opponent
+defaultRedirect: aimwie/xgame/opponents
+create:
+    redirect: 'aimwie/xgame/opponents/update/:id'
+    redirectClose: aimwie/xgame/opponents
+update:
+    redirect: aimwie/xgame/opponents
+    redirectClose: aimwie/xgame/opponents
